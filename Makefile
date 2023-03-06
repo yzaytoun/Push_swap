@@ -1,0 +1,111 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/10/03 19:16:59 by yzaytoun          #+#    #+#              #
+#    Updated: 2022/11/02 21:07:52by yzaytoun         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = push_swap.a
+
+vpath %.c src
+vpath %.h include
+vpath %_bonus.c bonus
+vpath %.o obj
+
+
+# ************************ Colors ***********************************
+ifneq (,$(findstring xterm,${TERM}))
+	BLACK        := $(shell tput -Txterm setaf 0)
+	RED          := $(shell tput -Txterm setaf 1)
+	GREEN        := $(shell tput -Txterm setaf 2)
+	YELLOW       := $(shell tput -Txterm setaf 3)
+	LIGHTPURPLE  := $(shell tput -Txterm setaf 4)
+	PURPLE       := $(shell tput -Txterm setaf 5)
+	BLUE         := $(shell tput -Txterm setaf 6)
+	WHITE        := $(shell tput -Txterm setaf 7)
+	RESET := $(shell tput -Txterm sgr0)
+else
+	BLACK        := ""
+	RED          := ""
+	GREEN        := ""
+	YELLOW       := ""
+	LIGHTPURPLE  := ""
+	PURPLE       := ""
+	BLUE         := ""
+	WHITE        := ""
+	RESET        := ""
+endif
+
+# --------------------- Definitions ------------------------------------
+CC = gcc 
+AR = ar
+ARFLAGS = -rcs
+INC = include
+CFLAGS = -Wall -Wextra -Werror -I $(INC) -g3
+RM = rm -fr
+SANITIAZE = -fsanitize=address -g3
+# PUSHBONUS := .  
+# ------------------ Libft and printf ------------------------------
+PRINTF = ft_printf/libftprintf.a
+LIBFT = libft/libft.a
+
+# ------------------------ Push Swap ------------------------------
+SRC = pushswap_actions.c pushswap_actions2.c pushswap_aux.c\
+	  pushswap_operations.c pushswap_sort.c pushswap_utils.c
+BONUS = *_bonus.c
+OBJDIR = obj
+
+PUSH_OBJ := $(SRC:%.c=$(OBJDIR)/%.o)
+PUSH_OBJB := $(BONUS:%.c=$(OBJDIR)/%.o)
+
+$(OBJDIR)/%.o:%.c
+	@mkdir -p $(@D)
+	$(COMPILE.c) -o $@ $<
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(PRINTF) $(PUSH_OBJ)
+	@echo "$(YELLOW)Compiling" $@
+	@$(AR) $(ARFLAGS) $@ $(PUSH_OBJ)
+	@echo "$(GREEN)Done!!"
+	@$(CC) $(NAME) $(LIBFT) $(PRINTF) main.c -o push_swap $(SANITIAZE)
+	@chmod +x push_swap
+	@echo "$(YELLOW)************Push Swap is ready****************\n"
+
+$(PRINTF) $(LIBFT) &:
+	@echo "$(YELLOW)Making Libft"
+	@$(MAKE) -C libft
+	@echo "$(YELLOW)Making ft_printf"
+	@$(MAKE) -C ft_printf
+	@echo "$(GREEN)Finished!!!"
+
+bonus: $(PUSHBONUS) $(NAME)
+
+$(PUSHBONUS): $(LIBFT) $(PRINTF) $(PUSH_OBJ) $(PUSH_OBJB)
+	@echo "$(YELLOW)Doing Bonus part....."
+	@$(AR) $(ARFLAGS) $(NAME) $?
+	@$(CC) $(NAME) $(LIBFT) $(PRINTF) main_bonus.c -o push_swap
+	@chmod +x push_swap
+	@echo "$(GREEN)\n************Push Swap bonus Done****************\n"
+
+
+fclean: clean
+	@$(RM) $(NAME) push_swap
+
+clean:
+	@echo "$(RED)Cleaning libft and ft_printf"
+	@(cd libft; make fclean)
+	@(cd ft_printf; make fclean)
+	@echo "Cleaning Object files"
+	@$(RM) $(PUSH_OBJ) $(PUSH_OBJB) $(OBJDIR)
+	@echo "Cleaning push_swap and push_swap.a"
+	@echo "$(DONE)\n*****************DONE Cleaning**********************\n\n"
+
+re: fclean all
+
+.PHONY: bonus all re fclean clean
