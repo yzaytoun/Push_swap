@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/01 20:13:45 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:50:07 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,15 @@ void	ft_initiatestack(t_stack **a, char **av, int ac)
 	i = ac - 1;
 	while (i > 0)
 	{
-		x = ft_atoi(av[i]);
-		if ((ft_isdigit(x + '0') == TRUE) && x < INT_MAX && x > INT_MIN)
-			ft_push(a, x);
+		if (ft_isdigit_str(av[i]) == TRUE)
+			x = ft_atoi(av[i]);
 		else
 		{
 			ft_putstr_fd("Invalid argument\n", STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}
+		if (x < INT_MAX && x > INT_MIN)
+			ft_push(a, x);
 		i--;
 	}
 }

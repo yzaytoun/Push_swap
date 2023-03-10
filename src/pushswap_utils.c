@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:12:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/01 19:25:24 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:08:20 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ int	ft_gettop(t_stack *top)
 {
 	if (ft_isempty(top))
 		return (-1);
-	return (top->next->num);
+	return (top->num);
 }

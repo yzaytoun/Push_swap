@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 22:19:39 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/01 19:30:57 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:54:00 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_atoi(const char *str)
 	}
 	else if (str[i] == '+')
 		i++;
-	while (str[i] != '\0' && ft_isdigit(str[i]))
+	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 		result = (result * 10) + (str[i++] - '0');
 	if (result > 2147483647 && sign == 1)
 		return (-1);

@@ -5,12 +5,72 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 19:59:33 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/06 18:48:27 by yzaytoun         ###   ########.fr       */
+/*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
+/*   Updated: 2023/03/09 20:42:53 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
+
+//FIXME - To be deleted
+void	ft_printstack(t_stack *a)
+{
+	t_stack	*top;
+
+	if (ft_isempty(a))
+		ft_printf("Empty Stack\n");
+	top = a;
+	while (top != NULL)
+	{
+		ft_printf("%d ", top->num);
+		top = top->next;
+	}
+	ft_printf("\n");
+}
+
+/*
+https://stackoverflow.com/questions/73771635/singly-linked-list-swap-first-node-with-another-node
+    Node *prev = *head, *cut;
+    if( pos == 1 ) { // special case of 1st & 2nd swapping
+        cut = prev->next;
+        prev->next = prev->next->next;
+        cut->next = prev;
+    } else {
+        while( --pos )
+            prev = prev->next; // Now pointing at node AHEAD of node to swap out.
+
+        cut  = prev->next;
+        Node *cont = cut->next; // Now pointing at continuation (if any)
+        cut->next = (*head)->next; // Now two heads
+        prev->next = *head; // head spliced onto 1st section
+        (*head)->next = cont; // old head joined to continuation
+    }
+    *head = cut; // This is the new head!
+**/
+//ANCHOR - Swap first two
+//REVIEW - https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
+void	ft_swap_first_two(t_stack **top)
+{
+	t_stack	*node;
+	t_stack	*next;
+
+	if (ft_isempty(*top) || ft_stacksize(*top) < 2)
+		return ;
+	node = (*top);
+	next = (*top)->next;
+	node->next = node->next->next;
+	next->next = node;
+	(*top) = next;
+}
+
+//ANCHOR - Adds the first node from stack_b to stack_a
+void	ft_swap_push(t_stack **stack_a, t_stack **stack_b)
+{
+	if (ft_isempty(*stack_a) || ft_isempty(*stack_b))
+		return ;
+	ft_push(stack_a, (*stack_b)->num);
+	ft_pop(stack_b);
+}
 
 /*ra : rotate a - desplaza hacia arriba todos los elementos del stack a una posición,
 de forma que el primer elemento se convierte en el último.
@@ -27,54 +87,47 @@ rrr : reverse rotate a y reverse rotate b - desplaza al mismo tiempo todos
 los elementos del stack a y del stack b una posición hacia abajo, de forma que
 el último elemento se convierte en el prime*/
 
-//FIXME - INCOMPLETE 
-int	ft_swapnodes(t_stack **stac, int pos1, int pos2)
-{
-	t_stack	*first;
-	t_stack	*second;
-
-	if ((pos1 <= 0 || pos1 > ft_stacksize(*stac))
-		|| (pos2 <= 0 || pos2 > ft_stacksize(*stac))
-		|| ft_stacksize(*stac) == 0)
-		return (-1);
-	if (pos1 == pos2)
-		return (EXIT_FAILURE);
-	first = ft_getnode(*stac, pos1);
-	second = ft_getnode(*stac, pos2);
-	if (first != NULL && second != NULL)
-	{
-		ft_swapstacks(&first, &second);
-		ft_swapstacks(&first->next, &second->next);
-	}
-	return (EXIT_SUCCESS);
-}
-
-
-//FIXME - INCOMPLETE 
-void	ft_swapstacks(t_stack **stac1, t_stack **stac2)
-{
-	t_stack	*temp;
-
-	temp = *stac1;
-	(*stac1) = (*stac2);
-	(*stac2) = temp;
-}
-
+//ANCHOR - Rotate Stack
 void	ft_swap_rotate(t_stack **top)
 {
-	t_stack	*next;
-	t_stack	*current;
-	t_stack	*prev;
+	t_stack	*node;
+	t_stack	*newtop;
 
-	next = NULL;
-	prev = NULL;
-	current = (*top);
-	while (current != NULL)
+	if (ft_isempty(*top))
+		return ;
+	newtop = NULL;
+	ft_push(&newtop, ft_gettop(*top));
+	ft_pop(top);
+	ft_reverse_stack(top);
+	node = (*top);
+	while (node != NULL)
 	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
+		ft_push(&newtop, node->num);
+		node = node->next;
 	}
-	(*top) = prev;
+	ft_deletestack(&node);
+	(*top) = newtop;
 }
+
+//FIXME - 
+void	ft_swap_reverse_rotate(t_stack **top)
+{
+	t_stack	*node;
+	t_stack	*newtop;
+
+	if (ft_isempty(*top))
+		return ;
+	newtop = NULL;
+	ft_push(&newtop, ft_getlast(*top));
+	ft_pop(top);
+	ft_reverse_stack(top);
+	node = (*top);
+	while (node->next != NULL)
+	{
+		ft_push(&newtop, node->num);
+		node = node->next;
+	}
+	ft_deletestack(&node);
+	(*top) = newtop;
+}
+
