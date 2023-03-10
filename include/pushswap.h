@@ -6,11 +6,11 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/09 20:41:56 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:44:56 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
+#ifndef PUSHSWAP_H	/*Push Swap Header*/
 # define PUSHSWAP_H
 
 # include "../libft/libft.h"
@@ -19,6 +19,17 @@
 
 # define TRUE 1
 # define FALSE !TRUE
+# define SA 3
+# define SB 4
+# define SS 5
+# define PA 6
+# define PB 7
+# define RA 8
+# define RB 9
+# define RR 10
+# define RRA 11
+# define RRB 12
+# define RRR 13
 
 typedef struct s_stack	t_stack;
 struct s_stack
@@ -53,7 +64,7 @@ void	ft_swap_rotate(t_stack **top);
 void	ft_swap_reverse_rotate(t_stack **top);
 void	ft_swap_first_two(t_stack **top);
 void	ft_swap_push(t_stack **stack_a, t_stack **stack_b);
-
+void	ft_printer(int pos);
 
 //FIXME - To be deleted
 void	ft_printstack(t_stack *a);
@@ -61,4 +72,4 @@ void	ft_printstack(t_stack *a);
 //ANCHOR - UTILs2
 int		ft_isdigit_str(char *str);
 void	ft_reverse_stack(t_stack **top);
-#endif
+#endif	/*Push Swap Header*/

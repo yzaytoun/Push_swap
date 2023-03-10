@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/09 20:42:37 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:01:13 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 			return (EXIT_FAILURE);
 		}
 		ft_printstack(stack_a);
-		ft_swap_reverse_rotate(&stack_a);
+		ft_swap_rotate(&stack_a);
 		ft_printstack(stack_a);
 		ft_free(&stack_a, &stack_b);
 	}
@@ -38,5 +38,6 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Minimum 4 arguments", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
+	//system("leaks push_swap");
 	return (EXIT_SUCCESS);
 }

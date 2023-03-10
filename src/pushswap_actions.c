@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/09 20:42:53 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:07:40 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,13 @@ void	ft_printstack(t_stack *a)
 	top = a;
 	while (top != NULL)
 	{
-		ft_printf("%d ", top->num);
+		ft_printf(" %d\n", top->num);
 		top = top->next;
 	}
-	ft_printf("\n");
+	ft_printf(" ---\n");
+	ft_printf("stack_a\n\n");
 }
 
-/*
-https://stackoverflow.com/questions/73771635/singly-linked-list-swap-first-node-with-another-node
-    Node *prev = *head, *cut;
-    if( pos == 1 ) { // special case of 1st & 2nd swapping
-        cut = prev->next;
-        prev->next = prev->next->next;
-        cut->next = prev;
-    } else {
-        while( --pos )
-            prev = prev->next; // Now pointing at node AHEAD of node to swap out.
-
-        cut  = prev->next;
-        Node *cont = cut->next; // Now pointing at continuation (if any)
-        cut->next = (*head)->next; // Now two heads
-        prev->next = *head; // head spliced onto 1st section
-        (*head)->next = cont; // old head joined to continuation
-    }
-    *head = cut; // This is the new head!
-**/
 //ANCHOR - Swap first two
 //REVIEW - https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
 void	ft_swap_first_two(t_stack **top)
@@ -72,21 +54,6 @@ void	ft_swap_push(t_stack **stack_a, t_stack **stack_b)
 	ft_pop(stack_b);
 }
 
-/*ra : rotate a - desplaza hacia arriba todos los elementos del stack a una posición,
-de forma que el primer elemento se convierte en el último.
-rb : rotate b - desplaza hacia arriba todos los elementos del stack b una posición,
-de forma que el primer elemento se convierte en el último.
-rr : rotate a y rotate b - desplaza al mismo tiempo todos los elementos del stack
-a y del stack b una posición hacia arriba, de forma que el primer elemento se
-convierte en el último.
-rra : reverse rotate a - desplaza hacia abajo todos los elementos del stack a una
-posición, de forma que el último elemento se convierte en el primero.7
-rrb : reverse rotate b - desplaza hacia abajo todos los elementos del stack b una
-posición, de forma que el último elemento se convierte en el primero.
-rrr : reverse rotate a y reverse rotate b - desplaza al mismo tiempo todos
-los elementos del stack a y del stack b una posición hacia abajo, de forma que
-el último elemento se convierte en el prime*/
-
 //ANCHOR - Rotate Stack
 void	ft_swap_rotate(t_stack **top)
 {
@@ -109,25 +76,52 @@ void	ft_swap_rotate(t_stack **top)
 	(*top) = newtop;
 }
 
-//FIXME - 
+//ANCHOR - Reverse Rotate
 void	ft_swap_reverse_rotate(t_stack **top)
 {
 	t_stack	*node;
 	t_stack	*newtop;
+	int		last;
 
+	last = 0;
 	if (ft_isempty(*top))
 		return ;
 	newtop = NULL;
-	ft_push(&newtop, ft_getlast(*top));
-	ft_pop(top);
-	ft_reverse_stack(top);
+	last = ft_getlast(*top);
 	node = (*top);
 	while (node->next != NULL)
 	{
 		ft_push(&newtop, node->num);
 		node = node->next;
 	}
-	ft_deletestack(&node);
+	ft_reverse_stack(&newtop);
+	ft_push(&newtop, last);
+	ft_deletestack(top);
 	(*top) = newtop;
 }
 
+void	ft_printer(int pos)
+{
+	if (pos == SA)
+		ft_printf("sa\n");
+	if (pos == SB)
+		ft_printf("sb\n");
+	if (pos == SS)
+		ft_printf("ss\n");
+	if (pos == PA)
+		ft_printf("pa\n");
+	if (pos == PB)
+		ft_printf("pb\n");
+	if (pos == RA)
+		ft_printf("ra\n");
+	if (pos == RB)
+		ft_printf("rb\n");
+	if (pos == RR)
+		ft_printf("rr\n");
+	if (pos == RRA)
+		ft_printf("rra\n");
+	if (pos == RRB)
+		ft_printf("rrb\n");
+	if (pos == RRR)
+		ft_printf("rrr\n");
+}
