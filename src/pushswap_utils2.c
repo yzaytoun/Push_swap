@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/09 20:40:13 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/11 10:40:04 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,28 @@ void	ft_reverse_stack(t_stack **top)
 		curr = next;
 	}
 	(*top) = prev;
+}
+
+int	ft_max(int x, int y)
+{
+	if (x > y)
+		return (x);
+	else
+		return (y);
+}
+
+int	ft_issorted(t_stack *top)
+{
+	t_stack	*node;
+
+	if (ft_isempty(top))
+		return (0);
+	node = top;
+	while (node->next != NULL)
+	{
+		if (node->num > node->next->num)
+			return (FALSE);
+		node = node->next;
+	}
+	return (TRUE);
 }

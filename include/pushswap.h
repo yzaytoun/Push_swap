@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/10 21:04:14 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/11 13:18:10 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "../libft/libft.h"
 # include "../ft_printf/include/ft_printf_bonus.h"
-# include "limits.h"
+# include <limits.h>
+# include <time.h>	//FIXME - To be deleted
 
 # define TRUE 1
 # define FALSE !TRUE
@@ -72,4 +73,5 @@ void	ft_printstack(t_stack *a);
 //ANCHOR - UTILs2
 int		ft_isdigit_str(char *str);
 void	ft_reverse_stack(t_stack **top);
+int		ft_max(int x, int y);
 #endif	/*Push Swap Header*/

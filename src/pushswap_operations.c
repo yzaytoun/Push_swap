@@ -6,12 +6,13 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:13:54 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/08 17:39:55 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/11 09:55:39 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
+//ANCHOR - Stack Size
 int	ft_stacksize(t_stack *stac)
 {
 	t_stack	*top;
@@ -29,6 +30,7 @@ int	ft_stacksize(t_stack *stac)
 	return (counter);
 }
 
+//ANCHOR - GET Position from value
 int	ft_getpos(t_stack *stac, int num)
 {
 	t_stack	*top;
