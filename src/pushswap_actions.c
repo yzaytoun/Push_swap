@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/10 21:04:02 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:27:52 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_printstack(t_stack *a)
 
 //ANCHOR - Swap first two
 //REVIEW - https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
-void	ft_swap_first_two(t_stack **top)
+int	ft_swap_first_two(t_stack **top)
 {
 	t_stack	*node;
 	t_stack	*next;
@@ -43,19 +43,21 @@ void	ft_swap_first_two(t_stack **top)
 	node->next = node->next->next;
 	next->next = node;
 	(*top) = next;
+	return (1);
 }
 
 //ANCHOR - Adds the first node from stack_b to stack_a
-void	ft_swap_push(t_stack **stack_a, t_stack **stack_b)
+int	ft_swap_push(t_stack **stack_a, t_stack **stack_b)
 {
 	if (ft_isempty(*stack_a) || ft_isempty(*stack_b))
 		return ;
 	ft_push(stack_a, (*stack_b)->num);
 	ft_pop(stack_b);
+	return (2);
 }
 
 //ANCHOR - Rotate Stack
-void	ft_swap_rotate(t_stack **top)
+int	ft_swap_rotate(t_stack **top)
 {
 	t_stack	*node;
 	t_stack	*newtop;
@@ -74,10 +76,11 @@ void	ft_swap_rotate(t_stack **top)
 	}
 	ft_deletestack(&node);
 	(*top) = newtop;
+	return (3);
 }
 
 //ANCHOR - Reverse Rotate
-void	ft_swap_reverse_rotate(t_stack **top)
+int	ft_swap_reverse_rotate(t_stack **top)
 {
 	t_stack	*node;
 	t_stack	*newtop;
@@ -98,30 +101,34 @@ void	ft_swap_reverse_rotate(t_stack **top)
 	ft_push(&newtop, last);
 	ft_deletestack(top);
 	(*top) = newtop;
+	return (4);
 }
 
-void	ft_printer(int pos)
+void	ft_printer(int signal)
 {
-	if (pos == SA)
+	int	mov;
+
+	mov = ft_classifier(signal);
+	if (mov == SA)
 		ft_printf("sa\n");
-	if (pos == SB)
+	if (mov == SB)
 		ft_printf("sb\n");
-	if (pos == SS)
+	if (mov == SS)
 		ft_printf("ss\n");
-	if (pos == PA)
+	if (mov == PA)
 		ft_printf("pa\n");
-	if (pos == PB)
+	if (mov == PB)
 		ft_printf("pb\n");
-	if (pos == RA)
+	if (mov == RA)
 		ft_printf("ra\n");
-	if (pos == RB)
+	if (mov == RB)
 		ft_printf("rb\n");
-	if (pos == RR)
+	if (mov == RR)
 		ft_printf("rr\n");
-	if (pos == RRA)
+	if (mov == RRA)
 		ft_printf("rra\n");
-	if (pos == RRB)
+	if (mov == RRB)
 		ft_printf("rrb\n");
-	if (pos == RRR)
+	if (mov == RRR)
 		ft_printf("rrr\n");
 }

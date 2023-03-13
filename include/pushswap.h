@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/11 13:18:10 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:37:09 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,19 @@
 
 # define TRUE 1
 # define FALSE !TRUE
-# define SA 3
-# define SB 4
-# define SS 5
-# define PA 6
-# define PB 7
-# define RA 8
-# define RB 9
-# define RR 10
-# define RRA 11
-# define RRB 12
-# define RRR 13
+# define SA 11
+# define PA 12
+# define RA 13
+# define RRA 14
+# define RRB 21
+# define SB 22
+# define PB 23
+# define RB 24
+# define SS 31
+# define RR 32
+# define RRR 33
+# define ASC 'A'
+# define DESC 'D'
 
 typedef struct s_stack	t_stack;
 struct s_stack
@@ -61,11 +63,11 @@ int		ft_getmax(t_stack *stac);
 int		ft_getpos(t_stack *stac, int num);
 
 //ANCHOR -  Actions
-void	ft_swap_rotate(t_stack **top);
-void	ft_swap_reverse_rotate(t_stack **top);
-void	ft_swap_first_two(t_stack **top);
-void	ft_swap_push(t_stack **stack_a, t_stack **stack_b);
-void	ft_printer(int pos);
+int		ft_swap_rotate(t_stack **top);
+int		ft_swap_reverse_rotate(t_stack **top);
+int		ft_swap_first_two(t_stack **top);
+int		ft_swap_push(t_stack **stack_a, t_stack **stack_b);
+void	ft_printer(int signal);
 
 //FIXME - To be deleted
 void	ft_printstack(t_stack *a);
@@ -74,4 +76,6 @@ void	ft_printstack(t_stack *a);
 int		ft_isdigit_str(char *str);
 void	ft_reverse_stack(t_stack **top);
 int		ft_max(int x, int y);
+int		ft_issorted(t_stack *top, int order);
+int		ft_classifier(int signal, int *stack_num);
 #endif	/*Push Swap Header*/

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/11 10:40:04 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:37:50 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,65 @@ int	ft_max(int x, int y)
 		return (y);
 }
 
-int	ft_issorted(t_stack *top)
+int	ft_issorted(t_stack *top, int order)
 {
 	t_stack	*node;
 
 	if (ft_isempty(top))
 		return (0);
 	node = top;
-	while (node->next != NULL)
+	if (order == ASC)
 	{
-		if (node->num > node->next->num)
-			return (FALSE);
-		node = node->next;
+		while (node->next != NULL)
+		{
+			if (node->num > node->next->num)
+				return (FALSE);
+			node = node->next;
+		}
+	}
+	else if (order == DESC)
+	{
+		while (node->next != NULL)
+		{
+			if (node->num > node->next->num)
+				return (FALSE);
+			node = node->next;
+		}
 	}
 	return (TRUE);
+}
+
+//FIXME -> Mark which stack
+//Array_A [SA, PA, RA, RRA]
+//Array_B [SB, PB, RB, RRB]
+int	ft_classifier(int signal, int *stack_num)
+{
+	int	sig;
+
+	sig = signal;
+	if (signal == 1)
+	{
+		sig = SA;
+		if (stack_num == 1)
+			sig = SB;
+	}
+	else if (signal == 2)
+	{
+		sig = PA;
+		if (stack_num == 1)
+			sig = PB;
+	}
+	else if (signal == 3)
+	{
+		sig = RA;
+		if (stack_num == 1)
+			sig = RB;
+	}
+	else if (signal == 4)
+	{
+		sig = RRA;
+		if (stack_num == 1)
+			sig = RRB;
+	}
+	return (sig);
 }
