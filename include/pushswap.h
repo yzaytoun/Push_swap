@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/13 20:37:09 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:21:28 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@
 
 # define TRUE 1
 # define FALSE !TRUE
-# define SA 11
-# define PA 12
-# define RA 13
-# define RRA 14
-# define RRB 21
-# define SB 22
-# define PB 23
-# define RB 24
-# define SS 31
-# define RR 32
-# define RRR 33
+# define SA 10
+# define PA 11
+# define RA 12
+# define RRA 13
+# define SB 14
+# define PB 15
+# define RB 16
+# define RRB 17
+# define SS 18
+# define RR 19
+# define RRR 20
 # define ASC 'A'
 # define DESC 'D'
 
@@ -66,7 +66,7 @@ int		ft_getpos(t_stack *stac, int num);
 int		ft_swap_rotate(t_stack **top);
 int		ft_swap_reverse_rotate(t_stack **top);
 int		ft_swap_first_two(t_stack **top);
-int		ft_swap_push(t_stack **stack_a, t_stack **stack_b);
+int		ft_swap_push(t_stack **to_stack, t_stack **from_stack);
 void	ft_printer(int signal);
 
 //FIXME - To be deleted
@@ -77,5 +77,5 @@ int		ft_isdigit_str(char *str);
 void	ft_reverse_stack(t_stack **top);
 int		ft_max(int x, int y);
 int		ft_issorted(t_stack *top, int order);
-int		ft_classifier(int signal, int *stack_num);
+int		ft_classifier(int signal);
 #endif	/*Push Swap Header*/

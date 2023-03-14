@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/11 14:55:54 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:42:08 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	int		maxsteps;
 	time_t	rawtime;
 	struct tm	*timeinfo;
 
@@ -26,6 +27,7 @@ int	main(int ac, char **av)
 	ft_printf("Time [%d:%d]\n", timeinfo->tm_min, timeinfo->tm_sec);
 	if (ac > 4 && ac < ARG_MAX)
 	{
+		maxsteps = (2 * (ac - 1)) - 1;
 		stack_a = ft_create_stack();
 		stack_b = ft_create_stack();
 		ft_initiatestack(&stack_a, av, ac);
@@ -34,7 +36,7 @@ int	main(int ac, char **av)
 			ft_putstr_fd("Error", STDERR_FILENO);
 			return (EXIT_FAILURE);
 		}
-		ft_sortstacks(&stack_a, &stack_b);
+		//ft_sort_stack(&stack_a, &stack_b, maxsteps);
 		ft_free(&stack_a, &stack_b);
 	}
 	else

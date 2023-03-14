@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/13 20:27:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:34:54 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ int	ft_swap_first_two(t_stack **top)
 }
 
 //ANCHOR - Adds the first node from stack_b to stack_a
-int	ft_swap_push(t_stack **stack_a, t_stack **stack_b)
+int	ft_swap_push(t_stack **to_stack, t_stack **from_stack)
 {
-	if (ft_isempty(*stack_a) || ft_isempty(*stack_b))
+	if (ft_isempty(*from_stack))
 		return ;
-	ft_push(stack_a, (*stack_b)->num);
-	ft_pop(stack_b);
+	ft_push(to_stack, (*from_stack)->num);
+	ft_pop(from_stack);
 	return (2);
 }
 

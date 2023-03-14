@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/13 20:37:50 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:50:50 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,37 +83,16 @@ int	ft_issorted(t_stack *top, int order)
 	return (TRUE);
 }
 
-//FIXME -> Mark which stack
-//Array_A [SA, PA, RA, RRA]
-//Array_B [SB, PB, RB, RRB]
-int	ft_classifier(int signal, int *stack_num)
+int	ft_classifier(int signal)
 {
-	int	sig;
+	int	arr[11];
+	int	i;
 
-	sig = signal;
-	if (signal == 1)
+	i = 0;
+	while (i < 11)
 	{
-		sig = SA;
-		if (stack_num == 1)
-			sig = SB;
+		arr[i] = i + 10;
+		++i;
 	}
-	else if (signal == 2)
-	{
-		sig = PA;
-		if (stack_num == 1)
-			sig = PB;
-	}
-	else if (signal == 3)
-	{
-		sig = RA;
-		if (stack_num == 1)
-			sig = RB;
-	}
-	else if (signal == 4)
-	{
-		sig = RRA;
-		if (stack_num == 1)
-			sig = RRB;
-	}
-	return (sig);
+	return (arr[signal]);
 }
