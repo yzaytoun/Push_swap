@@ -6,16 +6,16 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/11 11:14:15 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:28:35 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
 //ANCHOR - Delete Stack
-void	ft_deletestack(t_stack **top)
+void	ft_deletestack(t_pushswap **top)
 {
-	t_stack	*node;
+	t_pushswap	*node;
 
 	if (ft_isempty(*top))
 		return ;
@@ -30,9 +30,9 @@ void	ft_deletestack(t_stack **top)
 }
 
 //ANCHOR - Get last 
-int	ft_getlast(t_stack *top)
+int	ft_getlast(t_pushswap *top)
 {
-	t_stack	*node;
+	t_pushswap	*node;
 
 	node = top;
 	if (node->next == NULL)
@@ -65,17 +65,17 @@ void	ft_initiatestack(t_stack **a, char **av, int ac)
 			ft_putstr_fd("Error\n", STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}
-		ft_push(a, x);
+		ft_push(&(*a)->stack, x);
 		i--;
 	}
 }
 
 //ANCHOR - CHECK DUPLICATES
-int	ft_checkduplicates(t_stack *a)
+int	ft_checkduplicates(t_pushswap *a)
 {
-	t_stack	*top;
-	t_stack	*index;
-	int		count;
+	t_pushswap	*top;
+	t_pushswap	*index;
+	int			count;
 
 	top = a;
 	index = NULL;
@@ -100,6 +100,8 @@ int	ft_checkduplicates(t_stack *a)
 //ANCHOR - Free
 void	ft_free(t_stack **a, t_stack **b)
 {
-	ft_deletestack(a);
-	ft_deletestack(b);
+	ft_deletestack(&(*a)->stack);
+	ft_deletestack(&(*b)->stack);
+	free(a);
+	free(b);
 }

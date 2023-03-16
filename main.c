@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/14 19:42:08 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:36:12 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,18 @@ int	main(int ac, char **av)
 	if (ac > 4 && ac < ARG_MAX)
 	{
 		maxsteps = (2 * (ac - 1)) - 1;
-		stack_a = ft_create_stack();
-		stack_b = ft_create_stack();
+		stack_a = ft_create_stack(1);
+		stack_b = ft_create_stack(2);
 		ft_initiatestack(&stack_a, av, ac);
-		if (ft_checkduplicates(stack_a) != FALSE)
+		ft_printstack(stack_a->stack);
+		if (ft_checkduplicates(stack_a->stack) != FALSE)
 		{
 			ft_putstr_fd("Error", STDERR_FILENO);
 			return (EXIT_FAILURE);
 		}
+		ft_printstack(stack_a->stack);
+		(void)ft_swap_first_two(&stack_a);
+		ft_printstack(stack_a->stack);
 		//ft_sort_stack(&stack_a, &stack_b, maxsteps);
 		ft_free(&stack_a, &stack_b);
 	}

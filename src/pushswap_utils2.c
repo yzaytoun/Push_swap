@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/14 18:50:50 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:31:38 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	ft_isdigit_str(char	*str)
 	return (TRUE);
 }
 
-void	ft_reverse_stack(t_stack **top)
+void	ft_reverse_stack(t_pushswap **top)
 {
-	t_stack	*prev;
-	t_stack	*next;
-	t_stack	*curr;
+	t_pushswap	*prev;
+	t_pushswap	*next;
+	t_pushswap	*curr;
 
 	curr = (*top);
 	prev = NULL;
@@ -55,9 +55,9 @@ int	ft_max(int x, int y)
 		return (y);
 }
 
-int	ft_issorted(t_stack *top, int order)
+int	ft_issorted(t_pushswap *top, int order)
 {
-	t_stack	*node;
+	t_pushswap	*node;
 
 	if (ft_isempty(top))
 		return (0);
@@ -83,16 +83,3 @@ int	ft_issorted(t_stack *top, int order)
 	return (TRUE);
 }
 
-int	ft_classifier(int signal)
-{
-	int	arr[11];
-	int	i;
-
-	i = 0;
-	while (i < 11)
-	{
-		arr[i] = i + 10;
-		++i;
-	}
-	return (arr[signal]);
-}

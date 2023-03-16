@@ -6,17 +6,17 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:13:54 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/11 09:55:39 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:23:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
 //ANCHOR - Stack Size
-int	ft_stacksize(t_stack *stac)
+int	ft_stacksize(t_pushswap *stac)
 {
-	t_stack	*top;
-	int		counter;
+	t_pushswap	*top;
+	int			counter;
 
 	counter = 0;
 	if (ft_isempty(stac) == TRUE)
@@ -31,10 +31,10 @@ int	ft_stacksize(t_stack *stac)
 }
 
 //ANCHOR - GET Position from value
-int	ft_getpos(t_stack *stac, int num)
+int	ft_getpos(t_pushswap *stac, int num)
 {
-	t_stack	*top;
-	int		pos;
+	t_pushswap	*top;
+	int			pos;
 
 	pos = 0;
 	if (stac == NULL)
@@ -51,10 +51,10 @@ int	ft_getpos(t_stack *stac, int num)
 }
 
 //ANCHOR - Max value
-int	ft_getmax(t_stack *stac)
+int	ft_getmax(t_pushswap *stac)
 {
-	t_stack	*top;
-	int		max;
+	t_pushswap	*top;
+	int			max;
 
 	top = stac;
 	max = stac->num;
@@ -68,10 +68,10 @@ int	ft_getmax(t_stack *stac)
 }
 
 //ANCHOR - Min Value
-int	ft_getmin(t_stack *stac)
+int	ft_getmin(t_pushswap *stac)
 {
-	t_stack	*top;
-	int		min;
+	t_pushswap	*top;
+	int			min;
 
 	top = stac;
 	min = stac->num;
@@ -85,10 +85,10 @@ int	ft_getmin(t_stack *stac)
 }
 
 //ANCHOR - Get node
-t_stack	*ft_getnode(t_stack *stac, int pos)
+t_pushswap	*ft_getnode(t_pushswap *stac, int pos)
 {
-	t_stack	*top;
-	int		count;
+	t_pushswap	*top;
+	int			count;
 
 	count = 0;
 	if (ft_isempty(stac) == TRUE)
