@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap_aux.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/18 14:31:05 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:09:34 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_getlast(t_list *top)
 
 	node = top;
 	if (node->next == NULL)
-		return ((int)node->content);
+		return (*(int*)node->content);
 	else
 		while (node->next != NULL)
 			node = node->next;

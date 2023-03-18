@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap_actions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/18 14:37:15 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:04:40 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-//FIXME - To be deleted
 //SECTION ACTIONS
 
-//ANCHOR - Print stack
+//FIXME - To be deleted
 void	ft_printstack(t_list *a)
 {
 	t_list	*top;
@@ -25,7 +24,7 @@ void	ft_printstack(t_list *a)
 	top = a;
 	while (top != NULL)
 	{
-		ft_printf(" %d\n", top->content);
+		ft_printf(" %d\n", (int)top->content);
 		top = top->next;
 	}
 	ft_printf(" ---\n");
@@ -33,21 +32,19 @@ void	ft_printstack(t_list *a)
 }
 
 //ANCHOR - Swap first two
-//REVIEW - https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
-int	ft_swap_first_two(t_stack **top)
+//FIXME - Include stack struct 
+int	ft_swap_first_two(t_list **top)
 {
 	t_list	*node;
 	t_list	*next;
 
-	if (ft_isempty((*top)->stack) || ft_stacksize((*top)->stack) < 2)
+	if (ft_isempty((*top)) || ft_stacksize((*top)) < 2)
 		return (0);
-	node = (*top)->stack;
-	next = node->next;
-	node = node->next->next;
+	node = (*top);
+	next = (*top)->next;
+	node->next = node->next->next;
 	next->next = node;
-	(*top)->stack = next;
-	if ((*top)->index == 2)
-		return (1 + 4);
+	(*top) = next;
 	return (1);
 }
 
@@ -115,7 +112,7 @@ int	ft_swap_reverse_rotate(t_stack **top)
 	return (4);
 }
 
-//FIXME - NEEDS REVISION
+// ANCHOR - Printer
 void	ft_printer(int signal)
 {
 	if (signal == 0)

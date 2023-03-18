@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/18 14:24:51 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:24:44 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int			ft_getpos(t_list *stac, int num);
 //ANCHOR -  Actions
 int			ft_swap_rotate(t_stack **top);
 int			ft_swap_reverse_rotate(t_stack **top);
-int			ft_swap_first_two(t_stack **top);
+int			ft_swap_first_two(t_list **top);
 int			ft_swap_push(t_stack *to_stack, t_stack *from_stack);
 void		ft_printer(int signal);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/18 16:29:58 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:25:35 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 			return (EXIT_FAILURE);
 		}
 		ft_printstack(stack_a->stack);
-		ft_swap_first_two(&stack_a);
+		ft_swap_first_two(&stack_a->stack);
 		ft_printstack(stack_a->stack);
 		//ft_sort_stack(&stack_a, &stack_b, maxsteps);*/
 		ft_free(&stack_a, &stack_b);
