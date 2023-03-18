@@ -6,23 +6,26 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/16 20:37:32 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:37:15 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
 //FIXME - To be deleted
-void	ft_printstack(t_pushswap *a)
+//SECTION ACTIONS
+
+//ANCHOR - Print stack
+void	ft_printstack(t_list *a)
 {
-	t_pushswap	*top;
+	t_list	*top;
 
 	if (ft_isempty(a))
 		ft_printf("Empty Stack\n");
 	top = a;
 	while (top != NULL)
 	{
-		ft_printf(" %d\n", top->num);
+		ft_printf(" %d\n", top->content);
 		top = top->next;
 	}
 	ft_printf(" ---\n");
@@ -33,14 +36,14 @@ void	ft_printstack(t_pushswap *a)
 //REVIEW - https://www.geeksforgeeks.org/swap-nodes-in-a-linked-list-without-swapping-data/
 int	ft_swap_first_two(t_stack **top)
 {
-	t_pushswap	*node;
-	t_pushswap	*next;
+	t_list	*node;
+	t_list	*next;
 
 	if (ft_isempty((*top)->stack) || ft_stacksize((*top)->stack) < 2)
 		return (0);
 	node = (*top)->stack;
-	next = (*top)->stack->next;
-	node->next = node->next->next;
+	next = node->next;
+	node = node->next->next;
 	next->next = node;
 	(*top)->stack = next;
 	if ((*top)->index == 2)
@@ -49,13 +52,13 @@ int	ft_swap_first_two(t_stack **top)
 }
 
 //ANCHOR - Adds the first node from stack_b to stack_a
-int	ft_swap_push(t_stack **to_stack, t_stack **from_stack)
+int	ft_swap_push(t_stack *to_stack, t_stack *from_stack)
 {
-	if (ft_isempty((*from_stack)->stack))
+	if (ft_isempty((from_stack)->stack))
 		return (0);
-	ft_push(&(*to_stack)->stack, (*from_stack)->stack->num);
-	ft_pop(&(*from_stack)->stack);
-	if ((*to_stack)->index == 2)
+	ft_push(&(to_stack)->stack, (from_stack)->stack->content);
+	ft_pop(&(from_stack)->stack);
+	if ((to_stack)->index == 2)
 		return (2 + 4);
 	return (2);
 }
@@ -63,19 +66,19 @@ int	ft_swap_push(t_stack **to_stack, t_stack **from_stack)
 //ANCHOR - Rotate Stack
 int	ft_swap_rotate(t_stack **top)
 {
-	t_pushswap	*node;
-	t_pushswap	*newtop;
+	t_list	*node;
+	t_list	*newtop;
 
 	if (ft_isempty((*top)->stack))
 		return (0);
 	newtop = NULL;
-	ft_push(&newtop, ft_gettop((*top)->stack));
+	ft_push(&newtop, (void *)(uintptr_t)ft_gettop((*top)->stack));
 	ft_pop(&(*top)->stack);
 	ft_reverse_stack(&(*top)->stack);
 	node = (*top)->stack;
 	while (node != NULL)
 	{
-		ft_push(&newtop, node->num);
+		ft_push(&newtop, node->content);
 		node = node->next;
 	}
 	ft_deletestack(&node);
@@ -88,8 +91,8 @@ int	ft_swap_rotate(t_stack **top)
 //ANCHOR - Reverse Rotate
 int	ft_swap_reverse_rotate(t_stack **top)
 {
-	t_pushswap	*node;
-	t_pushswap	*newtop;
+	t_list		*node;
+	t_list		*newtop;
 	int			last;
 
 	last = 0;
@@ -100,11 +103,11 @@ int	ft_swap_reverse_rotate(t_stack **top)
 	node = (*top)->stack;
 	while (node->next != NULL)
 	{
-		ft_push(&newtop, node->num);
+		ft_push(&newtop, node->content);
 		node = node->next;
 	}
 	ft_reverse_stack(&newtop);
-	ft_push(&newtop, last);
+	ft_push(&newtop, (void *)(uintptr_t)last);
 	ft_deletestack(&(*top)->stack);
 	(*top)->stack = newtop;
 	if ((*top)->index == 2)

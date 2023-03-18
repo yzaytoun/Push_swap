@@ -6,11 +6,13 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/16 20:31:38 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:56:59 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
+//SECTION UTILS 2
+//ANCHOR - Digit in String
 
 int	ft_isdigit_str(char	*str)
 {
@@ -28,11 +30,12 @@ int	ft_isdigit_str(char	*str)
 	return (TRUE);
 }
 
-void	ft_reverse_stack(t_pushswap **top)
+//ANCHOR - Reverse stack
+void	ft_reverse_stack(t_list **top)
 {
-	t_pushswap	*prev;
-	t_pushswap	*next;
-	t_pushswap	*curr;
+	t_list	*prev;
+	t_list	*next;
+	t_list	*curr;
 
 	curr = (*top);
 	prev = NULL;
@@ -47,6 +50,7 @@ void	ft_reverse_stack(t_pushswap **top)
 	(*top) = prev;
 }
 
+//ANCHOR -
 int	ft_max(int x, int y)
 {
 	if (x > y)
@@ -55,9 +59,9 @@ int	ft_max(int x, int y)
 		return (y);
 }
 
-int	ft_issorted(t_pushswap *top, int order)
+int	ft_issorted(t_list *top, int order)
 {
-	t_pushswap	*node;
+	t_list	*node;
 
 	if (ft_isempty(top))
 		return (0);
@@ -66,7 +70,7 @@ int	ft_issorted(t_pushswap *top, int order)
 	{
 		while (node->next != NULL)
 		{
-			if (node->num > node->next->num)
+			if (node->content > node->next->content)
 				return (FALSE);
 			node = node->next;
 		}
@@ -75,11 +79,11 @@ int	ft_issorted(t_pushswap *top, int order)
 	{
 		while (node->next != NULL)
 		{
-			if (node->num > node->next->num)
+			if (node->content > node->next->content)
 				return (FALSE);
 			node = node->next;
 		}
 	}
 	return (TRUE);
 }
-
+//!SECTION

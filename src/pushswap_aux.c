@@ -6,16 +6,16 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/16 20:28:35 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:31:05 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
-
+//SECTION AUX
 //ANCHOR - Delete Stack
-void	ft_deletestack(t_pushswap **top)
+void	ft_deletestack(t_list **top)
 {
-	t_pushswap	*node;
+	t_list	*node;
 
 	if (ft_isempty(*top))
 		return ;
@@ -30,21 +30,21 @@ void	ft_deletestack(t_pushswap **top)
 }
 
 //ANCHOR - Get last 
-int	ft_getlast(t_pushswap *top)
+int	ft_getlast(t_list *top)
 {
-	t_pushswap	*node;
+	t_list	*node;
 
 	node = top;
 	if (node->next == NULL)
-		return (node->num);
+		return ((int)node->content);
 	else
 		while (node->next != NULL)
 			node = node->next;
-	return (node->num);
+	return (*(int *)node->content);
 }
 
 //ANCHOR - INITIATE STACK
-void	ft_initiatestack(t_stack **a, char **av, int ac)
+void	ft_initiatestack(t_list **a, char **av, int ac)
 {
 	int	i;
 	int	x;
@@ -65,16 +65,16 @@ void	ft_initiatestack(t_stack **a, char **av, int ac)
 			ft_putstr_fd("Error\n", STDERR_FILENO);
 			exit(EXIT_FAILURE);
 		}
-		ft_push(&(*a)->stack, x);
+		ft_push(a, (void *)(uintptr_t)x);
 		i--;
 	}
 }
 
 //ANCHOR - CHECK DUPLICATES
-int	ft_checkduplicates(t_pushswap *a)
+int	ft_checkduplicates(t_list *a)
 {
-	t_pushswap	*top;
-	t_pushswap	*index;
+	t_list		*top;
+	t_list		*index;
 	int			count;
 
 	top = a;
@@ -85,7 +85,7 @@ int	ft_checkduplicates(t_pushswap *a)
 		index = top->next;
 		while (index != NULL)
 		{
-			if (index->num == top->num)
+			if (index->content == top->content)
 			{
 				++count;
 				break ;
@@ -102,6 +102,7 @@ void	ft_free(t_stack **a, t_stack **b)
 {
 	ft_deletestack(&(*a)->stack);
 	ft_deletestack(&(*b)->stack);
-	free(a);
-	free(b);
+	free(*a);
+	free(*b);
 }
+//!SECTION

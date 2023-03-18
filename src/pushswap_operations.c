@@ -6,16 +6,16 @@
 /*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:13:54 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/16 20:23:18 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:26:30 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
 //ANCHOR - Stack Size
-int	ft_stacksize(t_pushswap *stac)
+int	ft_stacksize(t_list *stac)
 {
-	t_pushswap	*top;
+	t_list		*top;
 	int			counter;
 
 	counter = 0;
@@ -31,9 +31,9 @@ int	ft_stacksize(t_pushswap *stac)
 }
 
 //ANCHOR - GET Position from value
-int	ft_getpos(t_pushswap *stac, int num)
+int	ft_getpos(t_list *stac, int num)
 {
-	t_pushswap	*top;
+	t_list		*top;
 	int			pos;
 
 	pos = 0;
@@ -42,7 +42,7 @@ int	ft_getpos(t_pushswap *stac, int num)
 	top = stac;
 	while (top != NULL)
 	{
-		if (top->num == num)
+		if (*((int *)top->content) == num)
 			break ;
 		++pos;
 		top = top->next;
@@ -51,43 +51,43 @@ int	ft_getpos(t_pushswap *stac, int num)
 }
 
 //ANCHOR - Max value
-int	ft_getmax(t_pushswap *stac)
+int	ft_getmax(t_list *stac)
 {
-	t_pushswap	*top;
+	t_list		*top;
 	int			max;
 
 	top = stac;
-	max = stac->num;
+	max = *((int *)stac->content);
 	while (top != NULL)
 	{
-		if (top->num > max)
-			max = top->num;
+		if (*((int *)top->content) > max)
+			max = *((int *)top->content);
 		top = top->next;
 	}
 	return (max);
 }
 
 //ANCHOR - Min Value
-int	ft_getmin(t_pushswap *stac)
+int	ft_getmin(t_list *stac)
 {
-	t_pushswap	*top;
+	t_list		*top;
 	int			min;
 
 	top = stac;
-	min = stac->num;
+	min = *((int *)stac->content);
 	while (top != NULL)
 	{
-		if (top->num < min)
-			min = top->num;
+		if (*((int *)top->content) > min)
+			min = *((int *)top->content);
 		top = top->next;
 	}
 	return (min);
 }
 
 //ANCHOR - Get node
-t_pushswap	*ft_getnode(t_pushswap *stac, int pos)
+t_list	*ft_getnode(t_list *stac, int pos)
 {
-	t_pushswap	*top;
+	t_list		*top;
 	int			count;
 
 	count = 0;
