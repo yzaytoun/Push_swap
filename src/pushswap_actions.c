@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/18 18:04:40 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/19 16:58:53 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,33 @@ void	ft_printstack(t_list *a)
 }
 
 //ANCHOR - Swap first two
-//FIXME - Include stack struct 
-int	ft_swap_first_two(t_list **top)
+int	ft_swap_first_two(t_stack **top)
 {
 	t_list	*node;
 	t_list	*next;
 
-	if (ft_isempty((*top)) || ft_stacksize((*top)) < 2)
+	if (ft_isempty((*top)->stack) || ft_stacksize((*top)->stack) < 2)
 		return (0);
-	node = (*top);
-	next = (*top)->next;
+	node = (*top)->stack;
+	next = (*top)->stack->next;
 	node->next = node->next->next;
 	next->next = node;
-	(*top) = next;
+	(*top)->stack = next;
+	if ((*top)->index == 2)
+		return (1 * 10);
 	return (1);
 }
 
 //ANCHOR - Adds the first node from stack_b to stack_a
-int	ft_swap_push(t_stack *to_stack, t_stack *from_stack)
+int	ft_swap_push(t_stack **to_stack, t_stack **from_stack)
 {
-	if (ft_isempty((from_stack)->stack))
+	if (ft_isempty((*from_stack)->stack))
 		return (0);
-	ft_push(&(to_stack)->stack, (from_stack)->stack->content);
-	ft_pop(&(from_stack)->stack);
-	if ((to_stack)->index == 2)
-		return (2 + 4);
+	ft_push(&(*to_stack)->stack,
+		(void *)(uintptr_t)(*from_stack)->stack->content);
+	ft_pop(&(*from_stack)->stack);
+	if ((*to_stack)->index == 2)
+		return (2 * 10);
 	return (2);
 }
 
@@ -81,7 +83,7 @@ int	ft_swap_rotate(t_stack **top)
 	ft_deletestack(&node);
 	(*top)->stack = newtop;
 	if ((*top)->index == 2)
-		return (3 + 4);
+		return (3 * 10);
 	return (3);
 }
 
@@ -108,7 +110,7 @@ int	ft_swap_reverse_rotate(t_stack **top)
 	ft_deletestack(&(*top)->stack);
 	(*top)->stack = newtop;
 	if ((*top)->index == 2)
-		return (4 + 4);
+		return (4 * 10);
 	return (4);
 }
 
@@ -140,3 +142,5 @@ void	ft_printer(int signal)
 	if (signal == RRR)
 		ft_printf("rrr\n");
 }
+
+//!SECTION

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/18 17:24:44 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/19 16:58:09 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,38 @@
 # define PA 2
 # define RA 3
 # define RRA 4
-# define SB 5
-# define PB 6
-# define RB 7
-# define RRB 8
-# define SS 6
-# define RR 10
-# define RRR 12
+# define SB 10
+# define PB 20
+# define RB 30
+# define RRB 40
+# define SS 11
+# define RR 33
+# define RRR 44
 # define ASC 'A'
 # define DESC 'D'
 
+//ANCHOR - Structs declaration
 typedef struct s_stack
 {
 	int			index;
 	t_list		*stack;
 }				t_stack;
+
+typedef struct s_variables
+{
+	int			counter;
+	int			max_a;
+	int			max_b;
+	int			min_a;
+	int			min_b;
+	int			top_a;
+	int			top_b;
+	int			last_a;
+	int			last_b;
+	int			size_a;
+	int			steps;
+	int			signal;
+}				t_variables;
 
 //ANCHOR - PUSHSWAP UTIL
 t_stack		*ft_create_stack(int index);
@@ -62,10 +79,10 @@ int			ft_getmax(t_list *stac);
 int			ft_getpos(t_list *stac, int num);
 
 //ANCHOR -  Actions
+int			ft_swap_first_two(t_stack **top);
+int			ft_swap_push(t_stack **to_stack, t_stack **from_stack);
 int			ft_swap_rotate(t_stack **top);
 int			ft_swap_reverse_rotate(t_stack **top);
-int			ft_swap_first_two(t_list **top);
-int			ft_swap_push(t_stack *to_stack, t_stack *from_stack);
 void		ft_printer(int signal);
 
 //FIXME - To be deleted

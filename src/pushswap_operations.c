@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap_operations.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:13:54 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/17 20:26:30 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/19 12:34:06 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
+//SECTION - Operations
 //ANCHOR - Stack Size
 int	ft_stacksize(t_list *stac)
 {
@@ -103,3 +104,4 @@ t_list	*ft_getnode(t_list *stac, int pos)
 	}
 	return (top);
 }
+//!SECTION 
