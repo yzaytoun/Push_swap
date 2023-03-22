@@ -1,0 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pushswap_merge.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/21 19:22:16 by yzaytoun          #+#    #+#             */
+/*   Updated: 2023/03/22 20:51:57 by yzaytoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/pushswap.h"
+
+static void	ft_splitstack(t_list *stack, t_list **front, t_list **back)
+{
+	t_list	*fast;
+	t_list	*slow;
+
+	if (ft_isempty(stack))
+		return ;
+	slow = stack;
+	fast = stack->next;
+	while (fast != NULL)
+	{
+		fast = fast->next;
+		if (fast != NULL)
+		{
+			slow = slow->next;
+			fast = fast->next;
+		}
+	}
+	*front = stack;
+	*back = slow->next;
+	slow->next = NULL;
+}
+
+static t_list	*ft_joinstacks(t_list *stac_a, t_list *stac_b)
+{
+	t_list	*top;
+
+	if (stac_a == NULL)
+		return (stac_b);
+	else if (stac_b == NULL)
+		return (stac_a);
+	top = NULL;
+	if ((int)stac_a->content <= (int)stac_b->content)
+	{
+		top = stac_a;
+		top->next = ft_joinstacks(stac_a->next, stac_b);
+	}
+	else
+	{
+		top = stac_b;
+		top->next = ft_joinstacks(stac_a, stac_b->next);
+	}
+	return (top);
+}
+
+void	ft_mergesort(t_list **stack)
+{
+	t_list	*top;
+	t_list	*part1;
+	t_list	*part2;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		return ;
+	top = *stack;
+	ft_splitstack(top, &part1, &part2);
+	ft_mergesort(&part1);
+	ft_mergesort(&part2);
+	(*stack) = ft_joinstacks(part1, part2);
+}
+
+//FIXME - COPY STACK function

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/17 18:56:59 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:20:04 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
+
 //SECTION UTILS 2
 //ANCHOR - Digit in String
-
 int	ft_isdigit_str(char	*str)
 {
 	int	i;
@@ -50,7 +50,7 @@ void	ft_reverse_stack(t_list **top)
 	(*top) = prev;
 }
 
-//ANCHOR -
+//ANCHOR - MAX
 int	ft_max(int x, int y)
 {
 	if (x > y)
@@ -59,6 +59,7 @@ int	ft_max(int x, int y)
 		return (y);
 }
 
+// ANCHOR - IS sorted
 int	ft_issorted(t_list *top, int order)
 {
 	t_list	*node;

@@ -56,7 +56,8 @@ LIBFT = libft/libft.a
 
 # ------------------------ Push Swap ------------------------------
 SRC = pushswap_actions.c  pushswap_aux.c\
-	  pushswap_operations.c pushswap_sort.c pushswap_utils.c pushswap_utils2.c
+	  pushswap_operations.c pushswap_sort.c pushswap_utils.c pushswap_utils2.c\
+	  pushswap_merge.c
 BONUS = *_bonus.c
 OBJDIR = obj
 

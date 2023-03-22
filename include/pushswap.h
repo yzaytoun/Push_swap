@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/19 16:58:09 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:42:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,14 @@ int			ft_swap_rotate(t_stack **top);
 int			ft_swap_reverse_rotate(t_stack **top);
 void		ft_printer(int signal);
 
+//ANCHOR - SORT
+void		ft_sort_stack(t_stack *stack_a, t_stack *stack_b, int maxsteps);
+void		ft_setvariables(t_stack *stack_a, t_stack *stack_b,
+				t_variables *vars);
+int			ft_checktop(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
+int			ft_checkmax(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
+int			ft_checkmin(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
+
 //FIXME - To be deleted
 void		ft_printstack(t_list *a);
 
@@ -94,5 +102,6 @@ void		ft_reverse_stack(t_list **top);
 int			ft_max(int x, int y);
 int			ft_issorted(t_list *top, int order);
 
-
+//ANCHOR - MERGE
+void		ft_mergesort(t_list **stack);
 #endif	/*Push Swap Header*/
