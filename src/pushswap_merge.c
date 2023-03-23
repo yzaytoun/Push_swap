@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:22:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/22 20:51:57 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:56:21 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,18 @@ void	ft_mergesort(t_list **stack)
 	(*stack) = ft_joinstacks(part1, part2);
 }
 
-//FIXME - COPY STACK function
+t_list	*ft_copylist(t_list *list)
+{
+	t_list	*new;
+	t_list	*node;
+
+	node = list;
+	if (ft_isempty(list))
+		return (NULL);
+	else
+	{
+		new = ft_lstnew(node->content);
+		new->next = ft_copylist(list->next);
+	}
+	return (new);
+}

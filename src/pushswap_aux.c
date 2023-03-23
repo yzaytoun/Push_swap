@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/19 13:53:26 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:22:43 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,11 @@ int	ft_checkduplicates(t_list *a)
 }
 
 //ANCHOR - Free
-void	ft_free(t_stack **a, t_stack **b)
+void	ft_free(t_stack **a, t_stack **b, t_list *sorted)
 {
 	ft_deletestack(&(*a)->stack);
 	ft_deletestack(&(*b)->stack);
+	ft_deletestack(&sorted);
 	free(*a);
 	free(*b);
 }

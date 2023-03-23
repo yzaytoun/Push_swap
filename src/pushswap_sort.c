@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:10:50 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/22 19:46:24 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:37:51 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,34 @@ void	ft_setvariables(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 }
 
 //ANCHOR - Sort Stack
-void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b, int maxsteps)
+void	ft_sort_stack(
+	t_stack **stack_a, t_stack *stack_b, int maxsteps, t_list *sorted
+	)
 {
 	t_variables	*vars;
 
-	if (ft_isempty(stack_a->stack))
+	(void)sorted;
+	if (ft_isempty((*stack_a)->stack))
 		return ;
 	vars = ft_calloc(1, sizeof(t_variables));
 	if (!vars)
 		return ;
-	vars->size_a = ft_stacksize(stack_a->stack);
-	while (ft_issorted(stack_a->stack, ASC) != TRUE
-		&& ft_stacksize(stack_a->stack) != vars->size_a)
+	vars->size_a = ft_stacksize((*stack_a)->stack);
+	while ((ft_issorted((*stack_a)->stack, ASC) != TRUE)
+		&& (ft_stacksize((*stack_a)->stack) != vars->size_a))
 	{
 		if (vars->steps > maxsteps)
 		{
 			ft_printf("\n******* Number of steps exceeded *******\n");
 			return ;
 		}
-		ft_setvariables(stack_a, stack_b, vars);
-		ft_printer(ft_checktop(stack_a, stack_b, vars));
-		ft_printer(ft_checkmax(stack_a, stack_b, vars));
-		ft_printer(ft_checkmin(stack_a, stack_b, vars));
+		ft_setvariables(*stack_a, stack_b, vars);
+		ft_printer(ft_checktop(*stack_a, stack_b, vars));
+		ft_printer(ft_checkmax(*stack_a, stack_b, vars));
+		ft_printer(ft_checkmin(*stack_a, stack_b, vars));
+		ft_finalcheck(*stack_a, stack_b);
+		if ((ft_issorted((*stack_a)->stack, ASC) != TRUE))
+			ft_printer(ft_swap_push(&stack_b, stack_a));
 		vars->steps++;
 	}
 	free(vars);

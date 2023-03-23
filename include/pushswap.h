@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/22 19:42:18 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:35:31 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void		ft_deletestack(t_list **top);
 int			ft_getlast(t_list *top);
 void		ft_initiatestack(t_list **a, char **av, int ac);
 int			ft_checkduplicates(t_list *a);
-void		ft_free(t_stack **a, t_stack **b);
+void		ft_free(t_stack **a, t_stack **b, t_list *sorted);
 
 //ANCHOR -  Operation
 int			ft_stacksize(t_list *stac);
@@ -86,7 +86,8 @@ int			ft_swap_reverse_rotate(t_stack **top);
 void		ft_printer(int signal);
 
 //ANCHOR - SORT
-void		ft_sort_stack(t_stack *stack_a, t_stack *stack_b, int maxsteps);
+void		ft_sort_stack(t_stack **stack_a, t_stack *stack_b, int maxsteps,
+				t_list *sorted);
 void		ft_setvariables(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
 int			ft_checktop(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
@@ -104,4 +105,8 @@ int			ft_issorted(t_list *top, int order);
 
 //ANCHOR - MERGE
 void		ft_mergesort(t_list **stack);
+t_list		*ft_copylist(t_list *list);
+
+//ANCHOR - MERGE
+void		ft_finalcheck(t_stack *stack_a, t_stack *stack_b);
 #endif	/*Push Swap Header*/

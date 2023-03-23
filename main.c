@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/22 20:50:47 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:35:14 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_stack	*sorted_a;
+	t_list	*sorted;
 	int		maxsteps;
 	time_t	rawtime;
 	struct tm	*timeinfo;
@@ -38,10 +38,14 @@ int	main(int ac, char **av)
 			return (EXIT_FAILURE);
 		}
 		ft_printstack(stack_a->stack);
-		ft_mergesort(&stack_a->stack);
-		//ft_sort_stack(&stack_a, &stack_b, maxsteps);*/
+		sorted = ft_copylist(stack_a->stack);
+		ft_mergesort(&sorted);
+		ft_sort_stack(&stack_a, stack_b, maxsteps, sorted);
+		printf("sorted version\n");
+		ft_printstack(sorted);
+		printf("stack version\n");
 		ft_printstack(stack_a->stack);
-		ft_free(&stack_a, &stack_b);
+		ft_free(&stack_a, &stack_b, sorted);
 	}
 	else
 	{

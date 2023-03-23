@@ -53,11 +53,10 @@ SANITIAZE = -fsanitize=address -g3
 # ------------------ Libft and printf ------------------------------
 PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
-
 # ------------------------ Push Swap ------------------------------
 SRC = pushswap_actions.c  pushswap_aux.c\
 	  pushswap_operations.c pushswap_sort.c pushswap_utils.c pushswap_utils2.c\
-	  pushswap_merge.c
+	  pushswap_merge.c pushswap_sort_aux.c
 BONUS = *_bonus.c
 OBJDIR = obj
 
@@ -80,7 +79,7 @@ $(NAME): $(LIBFT) $(PRINTF) $(PUSH_OBJ)
 
 $(PRINTF) $(LIBFT) &:
 	@echo "$(YELLOW)Making Libft"
-	@$(MAKE) -C libft
+	@cd libft; make bonus;
 	@echo "$(YELLOW)Making ft_printf"
 	@$(MAKE) -C ft_printf
 	@echo "$(GREEN)Finished!!!"

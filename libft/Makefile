@@ -17,7 +17,7 @@ ARFLAGS := -rcs
 INC := libft.h
 CFLAGS := -Wall -Werror -Wextra -I $(INC) 
 RM := rm -f
-
+B = .
 OBJ = $(SRC:.c=.o)
 
 OBJ_BONUS = $(BONUS:.c=.o)
@@ -29,7 +29,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@$(AR) $(ARFLAGS) $@ $^
 
-bonus: $(B) $(NAME)
+bonus: $(B)
 
 $(B): $(OBJ_BONUS) $(OBJ) 
 	@$(AR) $(ARFLAGS) $(NAME) $?
