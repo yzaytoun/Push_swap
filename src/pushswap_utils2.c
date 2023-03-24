@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/21 19:20:04 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:29:33 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,18 @@ int	ft_issorted(t_list *top, int order)
 {
 	t_list	*node;
 
-	if (ft_isempty(top))
-		return (0);
+	if (ft_isempty(top) || ft_isempty(top->next))
+		return (TRUE);
 	node = top;
 	if (order == ASC)
 	{
-		while (node->next != NULL)
-		{
-			if (node->content > node->next->content)
-				return (FALSE);
-			node = node->next;
-		}
+		return ((int)node->content > (int)node->next->content
+			&& ft_issorted(node->next, ASC));
 	}
 	else if (order == DESC)
 	{
-		while (node->next != NULL)
-		{
-			if (node->content > node->next->content)
-				return (FALSE);
-			node = node->next;
-		}
+		return ((int)node->content < (int)node->next->content
+			&& ft_issorted(node->next, DESC));
 	}
 	return (TRUE);
 }

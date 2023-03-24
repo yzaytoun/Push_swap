@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:13:54 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/19 12:34:06 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:07:40 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_stacksize(t_list *stac)
 	int			counter;
 
 	counter = 0;
-	if (ft_isempty(stac) == TRUE)
+	if (ft_isempty(stac))
 		return (0);
 	top = stac;
 	while (top != NULL)
@@ -38,7 +38,7 @@ int	ft_getpos(t_list *stac, int num)
 	int			pos;
 
 	pos = 0;
-	if (stac == NULL)
+	if (ft_isempty(stac))
 		return (0);
 	top = stac;
 	while (top != NULL)
@@ -57,12 +57,14 @@ int	ft_getmax(t_list *stac)
 	t_list		*top;
 	int			max;
 
+	if (ft_isempty(stac))
+		return (0);
 	top = stac;
-	max = *((int *)stac->content);
+	max = (int)stac->content;
 	while (top != NULL)
 	{
-		if (*((int *)top->content) > max)
-			max = *((int *)top->content);
+		if (((int)top->content) > max)
+			max = ((int)top->content);
 		top = top->next;
 	}
 	return (max);
@@ -74,12 +76,14 @@ int	ft_getmin(t_list *stac)
 	t_list		*top;
 	int			min;
 
+	if (ft_isempty(stac))
+		return (0);
 	top = stac;
-	min = *((int *)stac->content);
+	min = ((int)stac->content);
 	while (top != NULL)
 	{
-		if (*((int *)top->content) > min)
-			min = *((int *)top->content);
+		if (((int)top->content) > min)
+			min = ((int)top->content);
 		top = top->next;
 	}
 	return (min);
@@ -92,7 +96,7 @@ t_list	*ft_getnode(t_list *stac, int pos)
 	int			count;
 
 	count = 0;
-	if (ft_isempty(stac) == TRUE)
+	if (ft_isempty(stac))
 		return (NULL);
 	top = stac;
 	while (top != NULL)

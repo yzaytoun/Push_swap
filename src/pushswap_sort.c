@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:10:50 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/23 20:37:51 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:37:19 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,51 @@
 //ANCHOR - Check if top element is larger than the next element in the list
 int	ft_checktop(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
-	if ((vars->top_a > (int)stack_a->stack->next->content)
-		&& (vars->top_b > (int)stack_b->stack->next->content))
-		vars->signal = ft_swap_first_two(&stack_a)
-			+ ft_swap_first_two(&stack_b);
+	if (ft_isempty(stack_b->stack) == FALSE
+		&& ft_stacksize(stack_b->stack) >= 2)
+	{
+		if ((vars->top_a > (int)stack_a->stack->next->content)
+			&& (vars->top_b > (int)stack_b->stack->next->content))
+			vars->signal = ft_swap_first_two(&stack_a)
+				+ ft_swap_first_two(&stack_b);
+		else if (vars->top_b > (int)stack_b->stack->next->content)
+			vars->signal = ft_swap_first_two(&stack_b);
+	}
 	else if (vars->top_a > (int)stack_a->stack->next->content)
 		vars->signal = ft_swap_first_two(&stack_a);
-	else if (vars->top_b > (int)stack_b->stack->next->content)
-		vars->signal = ft_swap_first_two(&stack_b);
 	return (vars->signal);
 }
 
 //ANCHOR - Check if top element is the maximum
 int	ft_checkmax(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
-	if ((vars->top_a == vars->max_a) && (vars->top_b == vars->max_b))
-		vars->signal = ft_swap_rotate(&stack_a) + ft_swap_rotate(&stack_a);
+	if (ft_isempty(stack_b->stack) == FALSE
+		&& ft_stacksize(stack_b->stack) >= 2)
+	{	
+		if ((vars->top_a == vars->max_a) && (vars->top_b == vars->max_b))
+			vars->signal = ft_swap_rotate(&stack_a) + ft_swap_rotate(&stack_a);
+		else if (vars->top_b == vars->max_b)
+			vars->signal = ft_swap_rotate(&stack_b);
+	}
 	else if (vars->top_a == vars->max_a)
 		vars->signal = ft_swap_rotate(&stack_a);
-	else if (vars->top_b == vars->max_b)
-		vars->signal = ft_swap_rotate(&stack_b);
 	return (vars->signal);
 }
 
 //ANCHOR - Check if the last element is the minimum
 int	ft_checkmin(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
-	if ((vars->last_a == vars->min_a) && (vars->last_b == vars->min_b))
-		vars->signal = ft_swap_reverse_rotate(&stack_a)
-			+ ft_swap_reverse_rotate(&stack_b);
+	if (ft_isempty(stack_b->stack) == FALSE
+		&& ft_stacksize(stack_b->stack) >= 2)
+	{
+		if ((vars->last_a == vars->min_a) && (vars->last_b == vars->min_b))
+			vars->signal = ft_swap_reverse_rotate(&stack_a)
+				+ ft_swap_reverse_rotate(&stack_b);
+		else if (vars->last_b == vars->min_b)
+			vars->signal = ft_swap_reverse_rotate(&stack_b);
+	}
 	else if (vars->last_a == vars->min_a)
 		vars->signal = ft_swap_reverse_rotate(&stack_a);
-	else if (vars->last_b == vars->min_b)
-		vars->signal = ft_swap_reverse_rotate(&stack_b);
 	return (vars->signal);
 }
 
@@ -79,13 +91,12 @@ void	ft_sort_stack(
 	if (!vars)
 		return ;
 	vars->size_a = ft_stacksize((*stack_a)->stack);
-	while ((ft_issorted((*stack_a)->stack, ASC) != TRUE)
-		&& (ft_stacksize((*stack_a)->stack) != vars->size_a))
+	while ((ft_issorted((*stack_a)->stack, ASC) != TRUE))
 	{
 		if (vars->steps > maxsteps)
 		{
-			ft_printf("\n******* Number of steps exceeded *******\n");
-			return ;
+			ft_printf("\n\033[0;31m*** Number of steps exceeded ***\033[0;m\n");
+			break ;
 		}
 		ft_setvariables(*stack_a, stack_b, vars);
 		ft_printer(ft_checktop(*stack_a, stack_b, vars));

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/23 20:22:43 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:07:12 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	ft_getlast(t_list *top)
 {
 	t_list	*node;
 
+	if (ft_isempty(top))
+		return (0);
 	node = top;
 	if (node->next == NULL)
 		return ((int)node->content);

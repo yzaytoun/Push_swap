@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:12:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/19 13:52:00 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:20:35 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,4 @@ int	ft_gettop(t_list *top)
 		return (-1);
 	return ((int)top->content);
 }
-//!SECTION*/
+//!SECTION
