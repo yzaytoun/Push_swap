@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:10:15 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/23 20:28:35 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:27:27 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,16 @@
 	}
 }
 */
-void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b)
+void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
 	t_list	*node;
 
-	if (ft_isempty(stack_a->stack) || ft_isempty(stack_b->stack))
+	(void)vars;
+	if (ft_isempty(stack_a->stack))
 		return ;
 	node = stack_b->stack;
-	if (ft_issorted(stack_b->stack, DESC) == TRUE
-		&& ft_stacksize(stack_b->stack) > 0)
+	if (ft_issorted(node, DESC) == TRUE
+		&& ft_stacksize(node) > 0)
 	{
 		while (node != NULL)
 		{
@@ -44,4 +45,6 @@ void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b)
 			node = node->next;
 		}
 	}
+	else if (ft_issorted(stack_a->stack, ASC) != TRUE)
+		ft_printer(ft_swap_push(&stack_b, &stack_a));
 }

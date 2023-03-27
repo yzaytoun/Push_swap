@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:10:50 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/24 20:37:19 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:29:52 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_checkmax(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 		&& ft_stacksize(stack_b->stack) >= 2)
 	{	
 		if ((vars->top_a == vars->max_a) && (vars->top_b == vars->max_b))
-			vars->signal = ft_swap_rotate(&stack_a) + ft_swap_rotate(&stack_a);
+			vars->signal = ft_swap_rotate(&stack_a) + ft_swap_rotate(&stack_b);
 		else if (vars->top_b == vars->max_b)
 			vars->signal = ft_swap_rotate(&stack_b);
 	}
@@ -102,9 +102,7 @@ void	ft_sort_stack(
 		ft_printer(ft_checktop(*stack_a, stack_b, vars));
 		ft_printer(ft_checkmax(*stack_a, stack_b, vars));
 		ft_printer(ft_checkmin(*stack_a, stack_b, vars));
-		ft_finalcheck(*stack_a, stack_b);
-		if ((ft_issorted((*stack_a)->stack, ASC) != TRUE))
-			ft_printer(ft_swap_push(&stack_b, stack_a));
+		ft_finalcheck(*stack_a, stack_b, vars);
 		vars->steps++;
 	}
 	free(vars);

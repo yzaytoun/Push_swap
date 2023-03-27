@@ -6,14 +6,13 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/19 16:58:53 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/25 12:52:56 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
 //SECTION ACTIONS
-
 //FIXME - To be deleted
 void	ft_printstack(t_list *a)
 {

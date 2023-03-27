@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/24 20:07:12 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:40:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_checkduplicates(t_list *a)
 		index = top->next;
 		while (index != NULL)
 		{
-			if (index->content == top->content)
+			if ((int)index->content == (int)top->content)
 			{
 				++count;
 				break ;

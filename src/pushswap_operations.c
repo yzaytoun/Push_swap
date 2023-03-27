@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:13:54 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/24 20:07:40 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:46:45 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_getmin(t_list *stac)
 	min = ((int)stac->content);
 	while (top != NULL)
 	{
-		if (((int)top->content) > min)
+		if (((int)top->content) < min)
 			min = ((int)top->content);
 		top = top->next;
 	}

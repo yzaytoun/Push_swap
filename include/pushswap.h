@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/23 20:35:31 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:26:32 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ void		ft_mergesort(t_list **stack);
 t_list		*ft_copylist(t_list *list);
 
 //ANCHOR - MERGE
-void		ft_finalcheck(t_stack *stack_a, t_stack *stack_b);
+void		ft_finalcheck(t_stack *stack_a, t_stack *stack_b,
+				t_variables *vars);
 #endif	/*Push Swap Header*/

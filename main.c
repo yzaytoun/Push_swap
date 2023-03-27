@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/24 20:03:01 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:45:29 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,9 @@ int	main(int ac, char **av)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	t_list	*sorted;
-	int		maxsteps;
-	time_t	rawtime;
-	struct tm	*timeinfo;
 
-	time(&rawtime);
-	timeinfo = localtime(&rawtime);
-	ft_printf("Time [%d:%d]\n", timeinfo->tm_min, timeinfo->tm_sec);
 	if (ac > 4 && ac < ARG_MAX)
 	{
-		maxsteps = (2 * (ac - 1)) - 1;
 		stack_a = ft_create_stack(1);
 		stack_b = ft_create_stack(2);
 		ft_initiatestack(&stack_a->stack, av, ac);
@@ -39,11 +32,11 @@ int	main(int ac, char **av)
 		}
 		sorted = ft_copylist(stack_a->stack);
 		ft_mergesort(&sorted);
-		ft_sort_stack(&stack_a, stack_b, maxsteps, sorted);
-		printf("sorted version\n");
-		ft_printstack(sorted);
-		printf("stack version\n");
-		ft_printstack(stack_a->stack);
+		ft_sort_stack(&stack_a, stack_b, ((2 * (ac - 1)) - 1), sorted);
+		/*ft_swap_push(&stack_b, &stack_a);
+		ft_swap_rotate(&stack_a);
+		ft_swap_push(&stack_a, &stack_b);
+		*/ft_printstack(stack_a->stack);
 		ft_free(&stack_a, &stack_b, sorted);
 	}
 	else
@@ -51,8 +44,6 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Minimum 4 arguments", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	timeinfo = localtime(&rawtime);
-	ft_printf("Time [%d:%d]\n", timeinfo->tm_min, timeinfo->tm_sec);
 	//system("leaks push_swap");
 	return (EXIT_SUCCESS);
 }
