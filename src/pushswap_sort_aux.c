@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:10:15 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/27 18:27:27 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/27 20:39:33 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,32 @@ void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 		return ;
 	node = stack_b->stack;
 	if (ft_issorted(node, DESC) == TRUE
-		&& ft_stacksize(node) > 0)
+		&& ft_stacksize(node) > 0 && ft_issorted(stack_a->stack, ASC) == TRUE)
 	{
 		while (node != NULL)
 		{
 			ft_printer(ft_swap_push(&stack_a, &stack_b));
 			node = node->next;
 		}
+		vars->flag = 1;
 	}
 	else if (ft_issorted(stack_a->stack, ASC) != TRUE)
 		ft_printer(ft_swap_push(&stack_b, &stack_a));
+	if (ft_issorted(stack_a->stack, ASC) == TRUE
+		&& ft_stacksize(stack_b->stack) == 0)
+		vars->flag = 1;
+}
+
+int	ft_findchr(char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (TRUE);
+		++i;
+	}
+	return (FALSE);
 }

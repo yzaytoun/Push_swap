@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/25 13:26:32 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/27 20:41:15 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_variables
 	int			size_a;
 	int			steps;
 	int			signal;
+	int			full_size;
+	int			flag;
 }				t_variables;
 
 //ANCHOR - PUSHSWAP UTIL
@@ -107,7 +109,8 @@ int			ft_issorted(t_list *top, int order);
 void		ft_mergesort(t_list **stack);
 t_list		*ft_copylist(t_list *list);
 
-//ANCHOR - MERGE
+//ANCHOR - SORT AUX
 void		ft_finalcheck(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
+int			ft_findchr(char *s, char c);
 #endif	/*Push Swap Header*/

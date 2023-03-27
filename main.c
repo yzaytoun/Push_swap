@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/25 13:45:29 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/27 20:33:37 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	t_stack	*stack_b;
 	t_list	*sorted;
 
-	if (ac > 4 && ac < ARG_MAX)
+	if (ac > 2 && ac < ARG_MAX)
 	{
 		stack_a = ft_create_stack(1);
 		stack_b = ft_create_stack(2);

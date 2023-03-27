@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/27 18:40:42 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/27 20:46:16 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,20 @@ int	ft_getlast(t_list *top)
 //ANCHOR - INITIATE STACK
 void	ft_initiatestack(t_list **a, char **av, int ac)
 {
-	int	i;
-	int	x;
+	int		i;
+	int		x;
+	char	**arg;
 
 	x = 0;
 	i = ac - 1;
+	if (ft_findchr(av, ' ') == TRUE)
+		arg = ft_split(av, ' ');
+	//else
+		//arg = ft_strarr(av);
 	while (i > 0)
 	{
-		if (ft_isdigit_str(av[i]) == TRUE)
-			x = ft_atoi(av[i]);
+		if (ft_isdigit_str(arg[i]) == TRUE)
+			x = ft_atoi(arg[i]);
 		else
 		{
 			ft_putstr_fd("Error\n", STDERR_FILENO);
@@ -70,6 +75,7 @@ void	ft_initiatestack(t_list **a, char **av, int ac)
 		ft_push(a, (void *)(uintptr_t)x);
 		i--;
 	}
+	//ft_free_strarr(arg);
 }
 
 //ANCHOR - CHECK DUPLICATES
