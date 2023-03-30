@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid>       +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 11:29:56 by yzaytoun          #+#    #+#             */
-/*   Updated: 2022/04/19 20:30:58 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:17:15 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_lstsize(t_list *lst)
@@ -17,8 +18,10 @@ int	ft_lstsize(t_list *lst)
 	t_list	*node;
 
 	i = 0;
+	if (lst == NULL)
+		return (0);
 	node = lst;
-	while (node != '\0')
+	while (node != NULL)
 	{
 		++i;
 		node = node->next;

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/27 20:41:15 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:29:00 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ int			ft_gettop(t_list *top);
 //ANCHOR	 - PushSWAP AUX
 void		ft_deletestack(t_list **top);
 int			ft_getlast(t_list *top);
-void		ft_initiatestack(t_list **a, char **av, int ac);
+void		ft_initiatestack(t_list **a, char **av);
 int			ft_checkduplicates(t_list *a);
 void		ft_free(t_stack **a, t_stack **b, t_list *sorted);
 
 //ANCHOR -  Operation
-int			ft_stacksize(t_list *stac);
 t_list		*ft_getnode(t_list *stac, int pos);
 int			ft_getmin(t_list *stac);
 int			ft_getmax(t_list *stac);
 int			ft_getpos(t_list *stac, int num);
+int			ft_len_strarr(char **strarr);
 
 //ANCHOR -  Actions
 int			ft_swap_first_two(t_stack **top);
@@ -113,4 +113,7 @@ t_list		*ft_copylist(t_list *list);
 void		ft_finalcheck(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
 int			ft_findchr(char *s, char c);
+void		ft_free_strarr(char **s);
+char		**ft_copy_strarr(char **s, int input, int *count);
+void		ft_avtype(char **av, char ***arg, int *i);
 #endif	/*Push Swap Header*/

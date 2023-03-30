@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/25 12:52:56 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:22:23 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_swap_first_two(t_stack **top)
 	t_list	*node;
 	t_list	*next;
 
-	if (ft_isempty((*top)->stack) || ft_stacksize((*top)->stack) < 2)
+	if (ft_isempty((*top)->stack) || ft_lstsize((*top)->stack) < 2)
 		return (0);
 	node = (*top)->stack;
 	next = (*top)->stack->next;

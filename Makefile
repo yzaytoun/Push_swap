@@ -73,7 +73,7 @@ $(NAME): $(LIBFT) $(PRINTF) $(PUSH_OBJ)
 	@echo "$(YELLOW)Compiling" $@
 	@$(AR) $(ARFLAGS) $@ $(PUSH_OBJ)
 	@echo "$(GREEN)Done!!"
-	@$(CC) $(NAME) $(LIBFT) $(PRINTF) main.c -o push_swap $(SANITIAZE)
+	@$(CC) $(NAME) $(LIBFT) $(PRINTF) main.c -o push_swap
 	@chmod +x push_swap
 	@echo "$(YELLOW)************Push Swap is ready****************\n"
 

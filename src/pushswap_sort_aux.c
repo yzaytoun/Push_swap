@@ -6,28 +6,12 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:10:15 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/27 20:39:33 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:31:12 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
-/*void	ft_chunckstack(t_list *list_a, t_list *list_b, t_list *sorted)
-{
-	int	chunks;
-
-	if (ft_isempty(list_a) || ft_isempty(list_b))
-		return ;
-	while (sorted != NULL)
-	{
-		if (ft_getpos(list_a, (void *)(uintptr_t)sorted->content)
-			> ft_getpos(list_a, (void *)(uintptr_t)sorted->next->content))
-		{
-		}
-		sorted = sorted->next;
-	}
-}
-*/
 void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
 	t_list	*node;
@@ -37,7 +21,7 @@ void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 		return ;
 	node = stack_b->stack;
 	if (ft_issorted(node, DESC) == TRUE
-		&& ft_stacksize(node) > 0 && ft_issorted(stack_a->stack, ASC) == TRUE)
+		&& ft_lstsize(node) > 0 && ft_issorted(stack_a->stack, ASC) == TRUE)
 	{
 		while (node != NULL)
 		{
@@ -49,7 +33,7 @@ void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 	else if (ft_issorted(stack_a->stack, ASC) != TRUE)
 		ft_printer(ft_swap_push(&stack_b, &stack_a));
 	if (ft_issorted(stack_a->stack, ASC) == TRUE
-		&& ft_stacksize(stack_b->stack) == 0)
+		&& ft_lstsize(stack_b->stack) == 0)
 		vars->flag = 1;
 }
 
@@ -65,4 +49,66 @@ int	ft_findchr(char *s, char c)
 		++i;
 	}
 	return (FALSE);
+}
+
+char	**ft_copy_strarr(char **s, int input, int *count)
+{
+	char	**newstr;
+	int		i;
+	int		index;
+
+	index = 0;
+	if (input == STDIN_FILENO)
+		i = 1;
+	else
+		i = 0;
+	if (!s || *s == NULL)
+		return (NULL);
+	newstr = ft_calloc(sizeof(char *), ft_len_strarr(s) + 1);
+	if (!newstr)
+		return (NULL);
+	while (s[i] != NULL)
+	{
+		newstr[index] = ft_strdup(s[i]);
+		++i;
+		++index;
+	}
+	*count = index;
+	newstr[index] = NULL;
+	return (newstr);
+}
+
+void	ft_free_strarr(char **s)
+{
+	int	i;
+
+	i = 0;
+	if (!s || *s == NULL)
+		return ;
+	while (s[i] != NULL)
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+}
+
+void	ft_avtype(char **av, char ***arg, int *i)
+{
+	int		count;
+
+	count = 0;
+	if (ft_findchr(av[1], ' ') == TRUE)
+	{
+		*arg = ft_split(av[1], ' ');
+		while ((*arg)[count] != NULL)
+			count++;
+	}
+	else
+	{
+		*arg = ft_copy_strarr(av, STDIN_FILENO, &count);
+		if (!*arg)
+			return ;
+	}
+	*i = count - 1;
 }

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/27 20:46:16 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:37:08 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,15 @@ int	ft_getlast(t_list *top)
 }
 
 //ANCHOR - INITIATE STACK
-void	ft_initiatestack(t_list **a, char **av, int ac)
+void	ft_initiatestack(t_list **a, char **av)
 {
 	int		i;
 	int		x;
 	char	**arg;
 
 	x = 0;
-	i = ac - 1;
-	if (ft_findchr(av, ' ') == TRUE)
-		arg = ft_split(av, ' ');
-	//else
-		//arg = ft_strarr(av);
-	while (i > 0)
+	ft_avtype(av, &arg, &i);
+	while (i >= 0)
 	{
 		if (ft_isdigit_str(arg[i]) == TRUE)
 			x = ft_atoi(arg[i]);
@@ -75,7 +71,7 @@ void	ft_initiatestack(t_list **a, char **av, int ac)
 		ft_push(a, (void *)(uintptr_t)x);
 		i--;
 	}
-	//ft_free_strarr(arg);
+	ft_free_strarr(arg);
 }
 
 //ANCHOR - CHECK DUPLICATES
@@ -85,6 +81,8 @@ int	ft_checkduplicates(t_list *a)
 	t_list		*index;
 	int			count;
 
+	if (ft_isempty(a))
+		return (0);
 	top = a;
 	index = NULL;
 	count = 0;
