@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME = push_swap.a
+PUSHBONUS := checker.a  
 
 vpath %.c src
 vpath %.h include
@@ -49,7 +50,6 @@ INC = include
 CFLAGS = -Wall -Wextra -Werror -I $(INC) -g3
 RM = rm -fr
 SANITIAZE = -fsanitize=address -g3
-# PUSHBONUS := .  
 # ------------------ Libft and printf ------------------------------
 PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
@@ -57,7 +57,7 @@ LIBFT = libft/libft.a
 SRC = pushswap_actions.c  pushswap_aux.c\
 	  pushswap_operations.c pushswap_sort.c pushswap_utils.c pushswap_utils2.c\
 	  pushswap_merge.c pushswap_sort_aux.c
-BONUS = *_bonus.c
+BONUS = checker_aux_bonus.c
 OBJDIR = obj
 
 PUSH_OBJ := $(SRC:%.c=$(OBJDIR)/%.o)
@@ -84,18 +84,18 @@ $(PRINTF) $(LIBFT) &:
 	@$(MAKE) -C ft_printf
 	@echo "$(GREEN)Finished!!!"
 
-bonus: $(PUSHBONUS) $(NAME)
+bonus: $(PUSHBONUS)
 
 $(PUSHBONUS): $(LIBFT) $(PRINTF) $(PUSH_OBJ) $(PUSH_OBJB)
 	@echo "$(YELLOW)Doing Bonus part....."
-	@$(AR) $(ARFLAGS) $(NAME) $?
-	@$(CC) $(NAME) $(LIBFT) $(PRINTF) main_bonus.c -o push_swap
-	@chmod +x push_swap
-	@echo "$(GREEN)\n************Push Swap bonus Done****************\n"
+	@$(AR) $(ARFLAGS) $@ $(PUSH_OBJ) $(PUSH_OBJB)
+	@$(CC) $@ $(LIBFT) $(PRINTF) main_bonus.c -o checker $(SANITIAZE)
+	@chmod +x checker
+	@echo "$(GREEN)\n************Checker DONE****************\n"
 
 
 fclean: clean
-	@$(RM) $(NAME) push_swap
+	@$(RM) $(NAME) push_swap $(PUSHBONUS) checker
 
 clean:
 	@echo "$(RED)Cleaning libft and ft_printf"
@@ -106,6 +106,6 @@ clean:
 	@echo "Cleaning push_swap and push_swap.a"
 	@echo "$(DONE)\n*****************DONE Cleaning**********************\n\n"
 
-re: fclean all
+re: fclean all bonus
 
 .PHONY: bonus all re fclean clean
