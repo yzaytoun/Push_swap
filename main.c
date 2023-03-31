@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/30 20:39:14 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:54:57 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	main(int ac, char **av)
 		}
 		sorted = ft_copylist(stack_a->stack);
 		ft_mergesort(&sorted);
-		ft_sort_stack(&stack_a, stack_b, ((2 * (ac - 1)) - 1), sorted);
 		ft_printstack(stack_a->stack);
+		ft_sort_stack(&stack_a, stack_b);
 		ft_free(&stack_a, &stack_b, sorted);
 	}
 	else

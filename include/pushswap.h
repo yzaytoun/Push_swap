@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/30 20:29:00 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:53:21 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../libft/libft.h"
 # include "../ft_printf/include/ft_printf_bonus.h"
 # include <limits.h>
-# include <time.h>	//FIXME - To be deleted
 
 # define TRUE 1
 # define FALSE !TRUE
@@ -88,8 +87,7 @@ int			ft_swap_reverse_rotate(t_stack **top);
 void		ft_printer(int signal);
 
 //ANCHOR - SORT
-void		ft_sort_stack(t_stack **stack_a, t_stack *stack_b, int maxsteps,
-				t_list *sorted);
+void		ft_sort_stack(t_stack **stack_a, t_stack *stack_b);
 void		ft_setvariables(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
 int			ft_checktop(t_stack *stack_a, t_stack *stack_b, t_variables *vars);

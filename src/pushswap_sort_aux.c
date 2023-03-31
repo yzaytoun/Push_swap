@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:10:15 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/30 20:31:12 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:53:13 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
 	t_list	*node;
 
-	(void)vars;
 	if (ft_isempty(stack_a->stack))
 		return ;
 	node = stack_b->stack;
@@ -26,9 +25,8 @@ void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 		while (node != NULL)
 		{
 			ft_printer(ft_swap_push(&stack_a, &stack_b));
-			node = node->next;
+			node = stack_b->stack;
 		}
-		vars->flag = 1;
 	}
 	else if (ft_issorted(stack_a->stack, ASC) != TRUE)
 		ft_printer(ft_swap_push(&stack_b, &stack_a));
