@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:10:50 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/31 18:51:58 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/01 16:59:20 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	ft_sort_stack(t_stack **stack_a, t_stack *stack_b)
 	if (!vars)
 		return ;
 	vars->full_size = ft_lstsize((*stack_a)->stack);
+	if (vars->full_size == 1)
+		return ;
 	while (vars->flag != 1)
 	{
 		ft_setvariables(*stack_a, stack_b, vars);

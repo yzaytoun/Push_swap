@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/27 18:45:12 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/01 17:08:49 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_isdigit_str(char	*str)
 	int	i;
 
 	i = 0;
-	if (!str)
+	if (!str || *str == '\0')
 		return (-1);
 	while (str[i] != '\0')
 	{
