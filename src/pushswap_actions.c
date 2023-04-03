@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/01 14:23:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:33:02 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ int	ft_swap_rotate(t_stack **top)
 		ft_push(&newtop, node->content);
 		node = node->next;
 	}
-	ft_deletestack(&node);
+	ft_deletestack(node);
+	free(node);
 	(*top)->stack = newtop;
 	if ((*top)->index == 2)
 		return (3 * 10);

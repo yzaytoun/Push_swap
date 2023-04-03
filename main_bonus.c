@@ -6,11 +6,19 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 19:33:39 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/01 17:32:30 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:26:13 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/pushswap_bonus.h"
+
+static void	ft_checkstack(t_list *a, t_list *b)
+{
+	if (ft_issorted(a, ASC) == TRUE && ft_isempty(b))
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+}
 
 int	main(int ac, char **av)
 {
@@ -28,7 +36,7 @@ int	main(int ac, char **av)
 			return (EXIT_FAILURE);
 		}
 		ft_getline(stack_a, stack_b);
-		ft_printstack(stack_a->stack);
+		ft_checkstack(stack_a->stack, stack_b->stack);
 		ft_free(&stack_a, &stack_b, NULL);
 	}
 	else
@@ -36,5 +44,6 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
+	system("leaks checker");
 	return (EXIT_SUCCESS);
 }

@@ -57,7 +57,7 @@ LIBFT = libft/libft.a
 SRC = pushswap_actions.c  pushswap_aux.c\
 	  pushswap_operations.c pushswap_sort.c pushswap_utils.c pushswap_utils2.c\
 	  pushswap_merge.c pushswap_sort_aux.c
-BONUS = checker_aux_bonus.c
+BONUS = checker_aux_bonus.c checker_bonus.c
 OBJDIR = obj
 
 PUSH_OBJ := $(SRC:%.c=$(OBJDIR)/%.o)
@@ -73,7 +73,7 @@ $(NAME): $(LIBFT) $(PRINTF) $(PUSH_OBJ)
 	@echo "$(YELLOW)Compiling" $@
 	@$(AR) $(ARFLAGS) $@ $(PUSH_OBJ)
 	@echo "$(GREEN)Done!!"
-	@$(CC) $(NAME) $(LIBFT) $(PRINTF) main.c -o push_swap
+	@$(CC) $(NAME) $(LIBFT) $(PRINTF) main.c -o push_swap $(SANITIAZE)
 	@chmod +x push_swap
 	@echo "$(YELLOW)************Push Swap is ready****************\n"
 
@@ -89,7 +89,7 @@ bonus: $(PUSHBONUS)
 $(PUSHBONUS): $(LIBFT) $(PRINTF) $(PUSH_OBJ) $(PUSH_OBJB)
 	@echo "$(YELLOW)Doing Bonus part....."
 	@$(AR) $(ARFLAGS) $@ $(PUSH_OBJ) $(PUSH_OBJB)
-	@$(CC) $@ $(LIBFT) $(PRINTF) main_bonus.c -o checker $(SANITIAZE)
+	@$(CC) $(PUSHBONUS) $(LIBFT) $(PRINTF) main_bonus.c -o checker
 	@chmod +x checker
 	@echo "$(GREEN)\n************Checker DONE****************\n"
 
