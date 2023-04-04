@@ -6,12 +6,14 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:22:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/24 19:52:53 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:42:54 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
+//SECTION MERGE
+//ANCHOR Split stack
 static void	ft_splitstack(t_list *stack, t_list **front, t_list **back)
 {
 	t_list	*fast;
@@ -35,6 +37,7 @@ static void	ft_splitstack(t_list *stack, t_list **front, t_list **back)
 	slow->next = NULL;
 }
 
+//ANCHOR Join stack
 static t_list	*ft_joinstacks(t_list *stac_a, t_list *stac_b)
 {
 	t_list	*top;
@@ -57,6 +60,7 @@ static t_list	*ft_joinstacks(t_list *stac_a, t_list *stac_b)
 	return (top);
 }
 
+//ANCHOR Merge sort
 void	ft_mergesort(t_list **stack)
 {
 	t_list	*top;
@@ -72,6 +76,7 @@ void	ft_mergesort(t_list **stack)
 	(*stack) = ft_joinstacks(part1, part2);
 }
 
+//ANCHOR Copy List
 t_list	*ft_copylist(t_list *list)
 {
 	t_list	*new;
@@ -87,3 +92,5 @@ t_list	*ft_copylist(t_list *list)
 	}
 	return (new);
 }
+
+//!SECTION

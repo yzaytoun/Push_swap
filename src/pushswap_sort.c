@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:10:50 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/03 20:14:56 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:25:44 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	ft_setvariables(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 	vars->top_b = ft_gettop(stack_b->stack);
 	vars->last_b = ft_getlast(stack_b->stack);
 	vars->size_a = ft_lstsize((stack_a)->stack);
+	vars->signal = 0;
 }
 
 //ANCHOR - Sort Stack
@@ -109,10 +110,12 @@ void	ft_sort_stack(t_stack **stack_a, t_stack *stack_b)
 	while (vars->flag != 1)
 	{
 		ft_setvariables(*stack_a, stack_b, vars);
-		ft_printer(ft_checktop(*stack_a, stack_b, vars));
 		ft_printer(ft_checkmax(*stack_a, stack_b, vars));
+		ft_setvariables(*stack_a, stack_b, vars);
+		ft_printer(ft_checktop(*stack_a, stack_b, vars));
+		ft_setvariables(*stack_a, stack_b, vars);
 		ft_printer(ft_checkmin(*stack_a, stack_b, vars));
-		vars->signal = 0;
+		ft_setvariables(*stack_a, stack_b, vars);
 		ft_finalcheck(*stack_a, stack_b, vars);
 		vars->steps++;
 	}

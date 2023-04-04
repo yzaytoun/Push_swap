@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/03 20:33:02 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/04 19:03:37 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	ft_swap_push(t_stack **to_stack, t_stack **from_stack)
 //ANCHOR - Rotate Stack
 int	ft_swap_rotate(t_stack **top)
 {
-	t_list	*node;
 	t_list	*newtop;
+	t_list	*node;
 
 	if (ft_isempty((*top)->stack))
 		return (0);
@@ -73,14 +73,15 @@ int	ft_swap_rotate(t_stack **top)
 	ft_push(&newtop, (void *)(uintptr_t)ft_gettop((*top)->stack));
 	ft_pop(&(*top)->stack);
 	ft_reverse_stack(&(*top)->stack);
-	node = (*top)->stack;
-	while (node != NULL)
+	node = NULL;
+	while ((*top)->stack != NULL)
 	{
-		ft_push(&newtop, node->content);
-		node = node->next;
+		ft_push(&newtop, (*top)->stack->content);
+		node = (*top)->stack;
+		(*top)->stack = (*top)->stack->next;
+		ft_pop(&node);
 	}
-	ft_deletestack(node);
-	free(node);
+	free((*top)->stack);
 	(*top)->stack = newtop;
 	if ((*top)->index == 2)
 		return (3 * 10);

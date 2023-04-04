@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 19:33:39 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/03 19:26:13 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/04 19:41:46 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	system("leaks checker");
 	return (EXIT_SUCCESS);
 }
