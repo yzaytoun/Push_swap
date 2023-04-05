@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzaytoun <yzaytoun@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 22:19:39 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/08 17:54:00 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:45:01 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int				i;
-	int				sign;
-	unsigned int	result;
+	int			i;
+	int			sign;
+	long		result;
 
 	if (!str)
 		return (0);
@@ -34,9 +34,5 @@ int	ft_atoi(const char *str)
 		i++;
 	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 		result = (result * 10) + (str[i++] - '0');
-	if (result > 2147483647 && sign == 1)
-		return (-1);
-	if (result > 2147483648 && sign == -1)
-		return (0);
 	return (result * sign);
 }

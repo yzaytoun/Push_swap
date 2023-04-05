@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:23:57 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/01 17:07:24 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:46:03 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	ft_getlast(t_list *top)
 //ANCHOR - INITIATE STACK
 void	ft_initiatestack(t_list **a, char **av)
 {
-	int		i;
-	int		x;
-	char	**arg;
+	int			i;
+	long		x;
+	char		**arg;
 
 	x = 0;
 	ft_avtype(av, &arg, &i);
