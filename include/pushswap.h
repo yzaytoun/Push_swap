@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/31 18:53:21 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:37:52 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_variables
 	int			last_a;
 	int			last_b;
 	int			size_a;
+	int			size_b;
 	int			steps;
 	int			signal;
 	int			full_size;
@@ -81,18 +82,15 @@ int			ft_len_strarr(char **strarr);
 
 //ANCHOR -  Actions
 int			ft_swap_first_two(t_stack **top);
-int			ft_swap_push(t_stack **to_stack, t_stack **from_stack);
+int			ft_swap_push(t_stack *to_stack, t_stack *from_stack);
 int			ft_swap_rotate(t_stack **top);
 int			ft_swap_reverse_rotate(t_stack **top);
 void		ft_printer(int signal);
 
 //ANCHOR - SORT
-void		ft_sort_stack(t_stack **stack_a, t_stack *stack_b);
+void		ft_sort_stack(t_stack *stack_a, t_stack *stack_b);
 void		ft_setvariables(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
-int			ft_checktop(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
-int			ft_checkmax(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
-int			ft_checkmin(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
 
 //FIXME - To be deleted
 void		ft_printstack(t_list *a);
@@ -108,10 +106,16 @@ void		ft_mergesort(t_list **stack);
 t_list		*ft_copylist(t_list *list);
 
 //ANCHOR - SORT AUX
-void		ft_finalcheck(t_stack *stack_a, t_stack *stack_b,
-				t_variables *vars);
 int			ft_findchr(char *s, char c);
 void		ft_free_strarr(char **s);
 char		**ft_copy_strarr(char **s, int input, int *count);
 void		ft_avtype(char **av, char ***arg, int *i);
+
+//ANCHOR - SORT AUX2
+int			ft_checkpush(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
+int			ft_checkrotate(t_stack *stack_a, t_stack *stack_b,
+				t_variables *vars);
+int			ft_checkreverse(t_stack *stack_a, t_stack *stack_b,
+				t_variables *vars);
+int			ft_checkswap(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
 #endif	/*Push Swap Header*/

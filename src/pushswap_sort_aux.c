@@ -6,35 +6,13 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:10:15 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/01 13:12:19 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/06 11:10:35 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
-
-void	ft_finalcheck(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
-{
-	t_list	*node;
-
-	if (ft_isempty(stack_a->stack))
-		return ;
-	node = stack_b->stack;
-	if (ft_issorted(node, DESC) == TRUE
-		&& ft_lstsize(node) > 0 && ft_issorted(stack_a->stack, ASC) == TRUE)
-	{
-		while (node != NULL)
-		{
-			ft_printer(ft_swap_push(&stack_a, &stack_b));
-			node = stack_b->stack;
-		}
-	}
-	else if (ft_issorted(stack_a->stack, ASC) != TRUE)
-		ft_printer(ft_swap_push(&stack_b, &stack_a));
-	if (ft_issorted(stack_a->stack, ASC) == TRUE
-		&& ft_lstsize(stack_b->stack) == 0)
-		vars->flag = 1;
-}
-
+//SECTION STRING ARRAY
+//ANCHOR - Find Char
 int	ft_findchr(char *s, char c)
 {
 	int	i;
@@ -49,6 +27,7 @@ int	ft_findchr(char *s, char c)
 	return (FALSE);
 }
 
+//ANCHOR - Copy String Array
 char	**ft_copy_strarr(char **s, int input, int *count)
 {
 	char	**newstr;
@@ -76,6 +55,7 @@ char	**ft_copy_strarr(char **s, int input, int *count)
 	return (newstr);
 }
 
+//ANCHOR - Free String Array
 void	ft_free_strarr(char **s)
 {
 	int	i;
@@ -91,6 +71,7 @@ void	ft_free_strarr(char **s)
 	free(s);
 }
 
+//ANCHOR - Check arguments
 void	ft_avtype(char **av, char ***arg, int *i)
 {
 	int		count;
