@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/06 14:38:20 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/07 10:51:52 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 
 //SECTION ACTIONS
 //FIXME - To be deleted
-void	ft_printstack(t_list *a)
+void	ft_printstack(t_stack *stack)
 {
 	t_list	*top;
 
-	if (ft_isempty(a))
+	if (ft_isempty(stack->stack))
 		ft_printf("Empty Stack\n");
-	top = a;
+	top = stack->stack;
 	while (top != NULL)
 	{
 		ft_printf(" %d\n", (int)top->content);
 		top = top->next;
 	}
 	ft_printf(" ---\n");
-	ft_printf("stack_a\n\n");
+	if (stack->index == 1)
+		ft_printf("stack_a\n\n");
+	else
+		ft_printf("stack_b\n\n");
 }
 
 //ANCHOR - Swap first two

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 19:33:39 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/04 19:41:46 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:05:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 			ft_putstr_fd("Error", STDERR_FILENO);
 			return (EXIT_FAILURE);
 		}
-		ft_getline(stack_a, stack_b);
+		ft_printf("Total instructions = %d\n", ft_getline(stack_a, stack_b));
 		ft_checkstack(stack_a->stack, stack_b->stack);
 		ft_free(&stack_a, &stack_b, NULL);
 	}

@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:10:50 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/06 17:24:51 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/07 10:50:00 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ void	ft_sort_stack(t_stack *stack_a, t_stack *stack_b)
 	if (ft_issorted(stack_a->stack, ASC) != TRUE)
 		while (ft_issorted(stack_a->stack, ASC) != TRUE)
 			ft_sortloop(stack_a, stack_b, vars);
+	if (ft_isempty(stack_b->stack) != TRUE
+		&& ft_issorted(stack_b->stack, DESC) == TRUE)
+		while (ft_isempty(stack_b->stack) != TRUE)
+			ft_printer(ft_swap_push(stack_a, stack_b));
 	free(vars);
 }
 //!SECTION

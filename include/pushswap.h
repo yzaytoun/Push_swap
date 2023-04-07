@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/06 14:37:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/07 10:52:09 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		ft_setvariables(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
 
 //FIXME - To be deleted
-void		ft_printstack(t_list *a);
+void		ft_printstack(t_stack *stack);
 
 //ANCHOR - UTILs2
 int			ft_isdigit_str(char *str);
