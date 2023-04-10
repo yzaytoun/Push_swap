@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/06 17:35:00 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:26:28 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,23 @@ int	ft_issorted(t_list *top, int order)
 			&& ft_issorted(node->next, DESC));
 	}
 	return (TRUE);
+}
+
+//ANCHOR - GET NEXT
+int	ft_getnext(t_list *lst, int direction)
+{
+	t_list	*top;
+
+	if (ft_isempty(lst) || ft_isempty(lst->next))
+		return (0);
+	top = ft_copylist(lst);
+	if (direction == FORWARDS)
+		return ((int)top->next->content);
+	else if (direction == BACKWARDS)
+	{
+		ft_reverse_stack(&top);
+		return ((int)top->next->content);
+	}
+	return (0);
 }
 //!SECTION

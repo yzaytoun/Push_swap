@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/07 10:41:22 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/10 20:36:00 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_list	*sorted;
 
 	if (ac > 1 && ac < ARG_MAX)
 	{
@@ -28,11 +27,12 @@ int	main(int ac, char **av)
 			ft_putstr_fd("Error", STDERR_FILENO);
 			return (EXIT_FAILURE);
 		}
-		sorted = ft_copylist(stack_a->stack);
-		ft_mergesort(&sorted);
-		ft_sort_stack(stack_a, stack_b);
-		//ft_printstack(stack_a->stack);
-		ft_free(&stack_a, &stack_b, sorted);
+		if (ft_lstsize(stack_a->stack) <= 11)
+			ft_sortstack(stack_a, stack_b);
+		else
+			ft_sortalgo(stack_a, stack_b);
+		//ft_printstack(stack_a);
+		ft_free(&stack_a, &stack_b, NULL);
 	}
 	return (EXIT_SUCCESS);
 }

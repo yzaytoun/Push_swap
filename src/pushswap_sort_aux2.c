@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:27:55 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/06 17:18:27 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/10 20:41:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 //ANCHOR - Check if top element is larger than the next element in the list
 int	ft_checkswap(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
-	if (ft_issorted(stack_a->stack, ASC) == TRUE && stack_a->index == 1
-		&& ft_isempty(stack_b->stack) == TRUE)
+	if (ft_issorted(stack_a->stack, ASC) == TRUE)
 		return (0);
 	if (vars->size_b >= 2 && vars->size_a >= 2)
 	{
@@ -39,8 +38,7 @@ int	ft_checkswap(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 //ANCHOR - Check if top element is the maximum
 int	ft_checkrotate(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
-	if (ft_issorted(stack_a->stack, ASC) == TRUE && stack_a->index == 1
-		&& ft_isempty(stack_b->stack) == TRUE)
+	if (ft_issorted(stack_a->stack, ASC) == TRUE)
 		return (0);
 	if (vars->size_b >= 2 && vars->size_a >= 2)
 	{	
@@ -51,7 +49,7 @@ int	ft_checkrotate(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 		else if (vars->top_a == vars->max_a || vars->top_a > vars->last_a)
 			vars->signal = ft_swap_rotate(&stack_a);
 	}
-	else if (vars->top_a == vars->max_a || vars->top_a > vars->last_a)
+	else if (vars->top_a == vars->max_a)
 		vars->signal = ft_swap_rotate(&stack_a);
 	return (vars->signal);
 }
@@ -59,8 +57,7 @@ int	ft_checkrotate(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 //ANCHOR - Check if the last element is the minimum
 int	ft_checkreverse(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
-	if (ft_issorted(stack_a->stack, ASC) == TRUE && stack_a->index == 1
-		&& ft_isempty(stack_b->stack) == TRUE)
+	if (ft_issorted(stack_a->stack, ASC) == TRUE)
 		return (0);
 	if (vars->size_b >= 2 && vars->size_a >= 2)
 	{
@@ -81,8 +78,7 @@ int	ft_checkreverse(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 //ANCHOR - FULL CHECK
 int	ft_checkpush(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
-	if (ft_issorted(stack_a->stack, ASC) == TRUE && stack_a->index == 1
-		&& ft_isempty(stack_b->stack) == TRUE)
+	if (ft_issorted(stack_a->stack, ASC) == TRUE)
 		return (0);
 	if (ft_issorted(stack_a->stack, ASC) == TRUE
 		&& vars->size_a != vars->full_size)

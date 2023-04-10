@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:13:54 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/03/30 20:24:28 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:36:49 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_getpos(t_list *stac, int num)
 	top = stac;
 	while (top != NULL)
 	{
-		if (*((int *)top->content) == num)
+		if ((int)top->content == num)
 			break ;
 		++pos;
 		top = top->next;
