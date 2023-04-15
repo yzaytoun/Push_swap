@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/07 14:26:28 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/15 13:10:14 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,6 @@ void	ft_reverse_stack(t_list **top)
 	(*top) = prev;
 }
 
-//ANCHOR - MAX
-int	ft_max(int x, int y)
-{
-	if (x > y)
-		return (x);
-	else
-		return (y);
-}
-
 // ANCHOR - IS sorted
 int	ft_issorted(t_list *top, int order)
 {
@@ -90,9 +81,9 @@ int	ft_getnext(t_list *lst, int direction)
 	if (ft_isempty(lst) || ft_isempty(lst->next))
 		return (0);
 	top = ft_copylist(lst);
-	if (direction == FORWARDS)
+	if (direction == FORWARD)
 		return ((int)top->next->content);
-	else if (direction == BACKWARDS)
+	else if (direction == BACKWARD)
 	{
 		ft_reverse_stack(&top);
 		return ((int)top->next->content);

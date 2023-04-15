@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/10 19:26:08 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/15 19:01:29 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define RRR 44
 # define ASC 'A'
 # define DESC 'D'
-# define BACKWARDS 'B'
-# define FORWARDS 'F'
+# define BACKWARD 'B'
+# define FORWARD 'F'
 
 //ANCHOR - Structs declaration
 typedef struct s_stack
@@ -44,7 +44,6 @@ typedef struct s_stack
 
 typedef struct s_variables
 {
-	int			counter;
 	int			max_a;
 	int			max_b;
 	int			min_a;
@@ -53,13 +52,17 @@ typedef struct s_variables
 	int			top_b;
 	int			last_a;
 	int			last_b;
+	int			next_a;
+	int			next_b;
 	int			size_a;
 	int			size_b;
-	int			point;
-	int			signal;
-	int			curr;
 	int			full_size;
-	int			revnext;
+	int			revnext_a;
+	int			revnext_b;
+	int			algo;
+	int			curr;
+	int			currpos;
+	int			currrevpos;
 }				t_variables;
 
 //ANCHOR - PUSHSWAP UTIL
@@ -77,7 +80,7 @@ int			ft_checkduplicates(t_list *a);
 void		ft_free(t_stack **a, t_stack **b, t_list *sorted);
 
 //ANCHOR -  Operation
-t_list		*ft_getnode(t_list *stac, int pos);
+int			ft_getnum(t_list *stac, int pos);
 int			ft_getmin(t_list *stac);
 int			ft_getmax(t_list *stac);
 int			ft_getpos(t_list *stac, int num);
@@ -92,8 +95,9 @@ void		ft_printer(int signal);
 
 //ANCHOR - SORT
 void		ft_sortstack(t_stack *stack_a, t_stack *stack_b);
-void		ft_setvariables(t_stack *stack_a, t_stack *stack_b,
+void		ft_checkpoint(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
+void		ft_sortloop(t_stack *stack_1, t_stack *stack_2, t_variables *vars);
 
 //ANCHOR - SORT AUX
 int			ft_findchr(char *s, char c);
@@ -107,7 +111,6 @@ void		ft_printstack(t_stack *stack);
 //ANCHOR - UTILs2
 int			ft_isdigit_str(char *str);
 void		ft_reverse_stack(t_list **top);
-int			ft_max(int x, int y);
 int			ft_issorted(t_list *top, int order);
 int			ft_getnext(t_list *lst, int direction);
 
@@ -115,16 +118,16 @@ int			ft_getnext(t_list *lst, int direction);
 void		ft_mergesort(t_list **stack);
 t_list		*ft_copylist(t_list *list);
 
-
 //ANCHOR - SORT AUX2
-int			ft_checkpush(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
-int			ft_checkrotate(t_stack *stack_a, t_stack *stack_b,
+void		ft_checkrotate(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
-int			ft_checkreverse(t_stack *stack_a, t_stack *stack_b,
+void		ft_checkreverse(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
-int			ft_checkswap(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
-
+void		ft_checkswap(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
+void		ft_checkmax(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
+void		ft_checkmin(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
 //ANCHOR - ALGO
 void		ft_sortalgo(t_stack *stack_a, t_stack *stack_b);
 int			ft_getpos_rev(t_list *stac, int num);
+int			ft_searchstack(t_list *stack, int num);
 #endif	/*Push Swap Header*/

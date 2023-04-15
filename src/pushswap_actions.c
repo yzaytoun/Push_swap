@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/07 10:51:52 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/15 15:58:39 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_swap_rotate(t_stack **top)
 	t_list	*newtop;
 	t_list	*node;
 
-	if (ft_isempty((*top)->stack))
+	if (ft_isempty((*top)->stack) || ft_lstsize((*top)->stack) < 2)
 		return (0);
 	newtop = NULL;
 	ft_push(&newtop, (void *)(uintptr_t)ft_gettop((*top)->stack));
@@ -99,7 +99,7 @@ int	ft_swap_reverse_rotate(t_stack **top)
 	int			last;
 
 	last = 0;
-	if (ft_isempty((*top)->stack))
+	if (ft_isempty((*top)->stack) || ft_lstsize((*top)->stack) < 2)
 		return (0);
 	newtop = NULL;
 	last = ft_getlast((*top)->stack);
