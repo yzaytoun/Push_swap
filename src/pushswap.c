@@ -6,123 +6,96 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:26:48 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/15 19:12:18 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:24:27 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
 //SECTION - SORT ALGO
-int	ft_searchstack(t_list *list, int num)
+//ANCHOR - Sort Only B
+void	ft_checkpos(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
-	t_list	*node;
-
-	node = list;
-	while (node != NULL)
-	{
-		if ((int)node->content == num)
-			return (TRUE);
-		node = node->next;
-	}
-	return (FALSE);
+	if (vars->top_a > vars->next_a && vars->top_b < vars->next_b)
+		ft_printer(ft_swap_first_two(&stack_a) + ft_swap_first_two(&stack_b));
+	ft_checkpoint(stack_a, stack_b, vars);
+	if (vars->top_a > vars->next_a)
+		ft_printer(ft_swap_first_two(&stack_a));
+	ft_checkpoint(stack_a, stack_b, vars);
+	if (vars->top_b < vars->next_b)
+		ft_printer(ft_swap_first_two(&stack_b));
+	ft_checkpoint(stack_a, stack_b, vars);
 }
 
-//ANCHOR - Sort Only B
-/*static void	ft_sortb(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
+//ANCHOR - PUSH TO B
+void	ft_pushtob(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 {
-	(void)stack_a;
-	if (vars->last_b > vars->top_b)
-		ft_printer(ft_swap_reverse_rotate(&stack_b));
-	else if (vars->last_b > vars->revnext_b)
-		ft_printer(ft_swap_reverse_rotate(&stack_b));
-	else if (vars->top_b < vars->next_b)
-		ft_printer(ft_swap_first_two(&stack_b));
-	else if (vars->top_b < vars->last_b)
-		ft_printer(ft_swap_rotate(&stack_b));
-}/*/
+	ft_checkpos(stack_a, stack_b, vars);
+	ft_printer(ft_swap_push(stack_a, stack_b));
+	ft_checkpoint(stack_a, stack_b, vars);
+	while (ft_issorted(stack_a->stack, ASC) != TRUE)
+	{
+		ft_checkpos(stack_a, stack_b, vars);
+		ft_sortloop(stack_a, stack_b, vars);
+	}
+}
 
 //ANCHOR - GET Chunk - get ordered chunk and extract the closet number
-static int	ft_getchunk(t_list *sorted, t_stack *stack,
-	int (*func)(t_list *, int))
+int	ft_getchunk(t_list *sorted, t_stack *stack,
+	int (*func)(t_list *, int), t_variables *vars)
 {
 	int		count;
-	t_list	*node;
 	int		min_pos;
+	int		limit;
 
 	count = 0;
-	node = ft_copylist(sorted);
-	if (ft_searchstack(stack->stack, (int)node->content) == TRUE)
-		min_pos = (*func)(stack->stack, (int)node->content);
-	else
-		min_pos = (*func)(stack->stack, (int)node->next->content);
-	while (count < 4 && node != NULL)
+	if (vars->full_size <= 100)
+		limit = 3;
+	if (vars->full_size > 100)
+		limit = 12;
+	if (ft_searchstack(stack->stack, (int)sorted->content) == TRUE)
+		min_pos = func(stack->stack, (int)sorted->content);
+	while (count < limit && sorted != NULL)
 	{
-		if (ft_searchstack(stack->stack, (int)node->content) == TRUE)
+		if (ft_searchstack(stack->stack, (int)sorted->content) == TRUE)
 		{
-			if (min_pos > (*func)(stack->stack, (int)node->content))
-				min_pos = (*func)(stack->stack, (int)node->content);
+			if (min_pos > func(stack->stack, (int)sorted->content))
+				min_pos = func(stack->stack, (int)sorted->content);
 		}
-		else
-		{
-			if (min_pos > (*func)(stack->stack, (int)node->next->content))
-				min_pos = (*func)(stack->stack, (int)node->next->content);
-			node = node->next;
-			++count;
-		}
-		node = node->next;
+		sorted = sorted->next;
 		++count;
 	}
-	ft_deletestack(&node);
 	return (min_pos);
 }
 
-//ANCHOR - Measure distance
-int	ft_getpos_rev(t_list *stac, int num)
-{
-	t_list	*top;
-	int		pos;
-
-	pos = 0;
-	if (ft_isempty(stac))
-		return (0);
-	top = ft_copylist(stac);
-	ft_reverse_stack(&top);
-	while (top != NULL)
-	{
-		if ((int)top->content == num)
-			break ;
-		++pos;
-		top = top->next;
-	}
-	return (pos);
-}
-
 //ANCHOR - Suffle stack
-void	ft_shuffle(
-	t_stack *stack_a, t_stack *stack_b, t_variables *vars, t_list *sorted)
+static void	ft_shuffle(t_stack *stack_a, t_stack *stack_b,
+	t_variables *vars, t_list *sorted)
 {
-	while (sorted != NULL && ft_lstsize(sorted) > 5)
+	int		(*func[2])(t_list *, int);
+
+	func[0] = &ft_getpos;
+	func[1] = &ft_getpos_rev;
+	ft_checkpoint(stack_a, stack_b, vars);
+	while (vars->size_a > 12)
 	{
-		vars->currpos = ft_getchunk(sorted, stack_a, &ft_getpos);
-		vars->currrevpos = ft_getchunk(sorted, stack_a, &ft_getpos_rev);
+		sorted = ft_copylist(stack_a->stack);
+		ft_mergesort(&sorted);
+		vars->currpos = ft_getchunk(sorted, stack_a, func[0], vars);
+		vars->currrevpos = ft_getchunk(sorted, stack_a, func[1], vars);
 		if (vars->currpos > vars->currrevpos)
-			vars->curr = ft_getnum(stack_a->stack, vars->currrevpos);
+			vars->curr = ft_getnum(stack_a->stack, vars->currrevpos, BACKWARD);
 		else
-			vars->curr = ft_getnum(stack_a->stack, vars->currpos);
+			vars->curr = ft_getnum(stack_a->stack, vars->currpos, FORWARD);
 		ft_checkpoint(stack_a, stack_b, vars);
-		while (vars->top_a != vars->curr)
-		{
-			if (vars->currpos > vars->currrevpos)
-				ft_printer(ft_swap_reverse_rotate(&stack_a));
-			else
-				ft_printer(ft_swap_rotate(&stack_a));
-			ft_checkpoint(stack_a, stack_b, vars);
-		}
+		ft_getnext_element(stack_a, stack_b, vars);
+		ft_checkpos(stack_a, stack_b, vars);
+		ft_checkpoint(stack_a, stack_b, vars);
 		ft_printer(ft_swap_push(stack_b, stack_a));
 		ft_checkpoint(stack_a, stack_b, vars);
-		sorted = sorted->next;
+		ft_deletestack(&sorted);
 	}
-	ft_sortstack(stack_a, stack_b);
+	ft_finalstep(stack_a, stack_b, vars);
 }
 
 //ANCHOR - SORT ALGO
@@ -133,16 +106,15 @@ void	ft_sortalgo(t_stack *stack_a, t_stack *stack_b)
 
 	if (ft_isempty(stack_a->stack))
 		return ;
+	sorted = NULL;
 	vars = ft_calloc(1, sizeof(t_variables));
 	if (!vars)
 		return ;
-	sorted = NULL;
 	vars->full_size = ft_lstsize(stack_a->stack);
 	if (vars->full_size == 1)
 		return ;
-	sorted = ft_copylist(stack_a->stack);
-	ft_mergesort(&sorted);
-	ft_shuffle(stack_a, stack_b, vars, sorted);
+	if (ft_issorted(stack_a->stack, ASC) != TRUE)
+		ft_shuffle(stack_a, stack_b, vars, sorted);
 	free(vars);
 }
 //!SECTION

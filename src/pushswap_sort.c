@@ -6,13 +6,41 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:10:50 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/15 10:38:30 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:05:29 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
 //SECTION - SORT
+//ANCHOR - Final step
+void	ft_finalstep(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
+{
+	while (ft_issorted(stack_a->stack, ASC) != TRUE)
+	{
+		ft_checkpos(stack_a, stack_b, vars);
+		ft_checkpoint(stack_a, stack_b, vars);
+		ft_sortloop(stack_a, stack_b, vars);
+	}
+	while (ft_isempty(stack_b->stack) != TRUE)
+		ft_pushtob(stack_a, stack_b, vars);
+}
+
+//ANCHOR - Search Stack
+int	ft_searchstack(t_list *list, int num)
+{
+	t_list	*node;
+
+	node = list;
+	while (node != NULL)
+	{
+		if ((int)node->content == num)
+			return (TRUE);
+		node = node->next;
+	}
+	return (FALSE);
+}
+
 //ANCHOR - First rotation
 void	ft_sortloop(t_stack *stack_1, t_stack *stack_2, t_variables *vars)
 {
@@ -70,13 +98,17 @@ void	ft_sortstack(t_stack *stack_a, t_stack *stack_b)
 	vars->full_size = ft_lstsize(stack_a->stack);
 	if (vars->full_size == 1)
 		return ;
-	while (i < 4)
+	if (ft_issorted(stack_a->stack, ASC) != TRUE
+		|| ft_isempty(stack_b->stack) != TRUE)
 	{
-		while (ft_issorted(stack_a->stack, ASC) != TRUE)
-			ft_sortloop(stack_a, stack_b, vars);
-		while (ft_isempty(stack_b->stack) != TRUE)
-			ft_printer(ft_swap_push(stack_a, stack_b));
-		++i;
+		while (i < 4)
+		{
+			while (ft_issorted(stack_a->stack, ASC) != TRUE)
+				ft_sortloop(stack_a, stack_b, vars);
+			while (ft_isempty(stack_b->stack) != TRUE)
+				ft_printer(ft_swap_push(stack_a, stack_b));
+			++i;
+		}
 	}
 	free(vars);
 }

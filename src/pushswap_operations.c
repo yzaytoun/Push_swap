@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:13:54 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/15 14:04:13 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/19 20:25:00 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,32 @@ int	ft_getmin(t_list *stac)
 }
 
 //ANCHOR - Get node
-int	ft_getnum(t_list *stac, int pos)
+int	ft_getnum(t_list *stac, int pos, int direction)
 {
+	t_list		*bottom;
 	t_list		*top;
 	int			count;
 
 	count = 0;
 	if (ft_isempty(stac))
 		return (0);
-	top = stac;
+	bottom = ft_getbottom(stac);
+	if (direction == FORWARD)
+		top = stac;
+	else
+		top = bottom;
 	while (top != NULL)
 	{
 		if (count == pos)
-			return ((int)top->content);
+		{
+			count = (int)top->content;
+			break ;
+		}
 		count++;
 		top = top->next;
 	}
-	return (0);
+	ft_deletestack(&bottom);
+	return (count);
 }
 
 //ANCHOR - STRARRAY LEN

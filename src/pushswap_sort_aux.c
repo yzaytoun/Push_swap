@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:10:15 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/06 11:10:35 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/20 19:37:24 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,3 +91,31 @@ void	ft_avtype(char **av, char ***arg, int *i)
 	}
 	*i = count - 1;
 }
+
+//ANCHOR - Measure distance
+int	ft_getpos_rev(t_list *stac, int num)
+{
+	t_list	*top;
+	t_list	*node;
+	int		pos;
+
+	pos = 0;
+	if (ft_isempty(stac))
+		return (0);
+	top = ft_copylist(stac);
+	ft_reverse_stack(&top);
+	node = top;
+	while (node != NULL)
+	{
+		if ((int)node->content == num)
+		{	
+			ft_deletestack(&top);
+			return (pos);
+		}
+		++pos;
+		node = node->next;
+	}
+	ft_deletestack(&top);
+	return (pos);
+}
+//!SECTION

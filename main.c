@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:11:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/14 18:29:10 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/19 20:36:36 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ int	main(int ac, char **av)
 			ft_putstr_fd("Error", STDERR_FILENO);
 			return (EXIT_FAILURE);
 		}
-		if (ft_lstsize(stack_a->stack) <= 11)
+		if (ft_lstsize(stack_a->stack) <= 9)
 			ft_sortstack(stack_a, stack_b);
 		else
 			ft_sortalgo(stack_a, stack_b);
-		//ft_printstack(stack_a);
 		ft_free(&stack_a, &stack_b, NULL);
 	}
 	return (EXIT_SUCCESS);

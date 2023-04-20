@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/15 19:01:29 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:24:37 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			ft_checkduplicates(t_list *a);
 void		ft_free(t_stack **a, t_stack **b, t_list *sorted);
 
 //ANCHOR -  Operation
-int			ft_getnum(t_list *stac, int pos);
+int			ft_getnum(t_list *stac, int pos, int direction);
 int			ft_getmin(t_list *stac);
 int			ft_getmax(t_list *stac);
 int			ft_getpos(t_list *stac, int num);
@@ -94,6 +94,8 @@ int			ft_swap_reverse_rotate(t_stack **top);
 void		ft_printer(int signal);
 
 //ANCHOR - SORT
+void		ft_finalstep(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
+int			ft_searchstack(t_list *stack, int num);
 void		ft_sortstack(t_stack *stack_a, t_stack *stack_b);
 void		ft_checkpoint(t_stack *stack_a, t_stack *stack_b,
 				t_variables *vars);
@@ -104,17 +106,18 @@ int			ft_findchr(char *s, char c);
 void		ft_free_strarr(char **s);
 char		**ft_copy_strarr(char **s, int input, int *count);
 void		ft_avtype(char **av, char ***arg, int *i);
-
-//FIXME - To be deleted
-void		ft_printstack(t_stack *stack);
+int			ft_getpos_rev(t_list *stac, int num);
 
 //ANCHOR - UTILs2
 int			ft_isdigit_str(char *str);
 void		ft_reverse_stack(t_list **top);
 int			ft_issorted(t_list *top, int order);
 int			ft_getnext(t_list *lst, int direction);
+t_list		*ft_getbottom(t_list *stac);
 
 //ANCHOR - MERGE
+void		ft_getnext_element(t_stack *stack_a, t_stack *stack_b,
+				t_variables *vars);
 void		ft_mergesort(t_list **stack);
 t_list		*ft_copylist(t_list *list);
 
@@ -126,8 +129,13 @@ void		ft_checkreverse(t_stack *stack_a, t_stack *stack_b,
 void		ft_checkswap(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
 void		ft_checkmax(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
 void		ft_checkmin(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
-//ANCHOR - ALGO
+
+//ANCHOR - PUSHSWAP
+void		ft_checkpos(t_stack *stack_a, t_stack *stack_b, t_variables *vars);
+void		ft_pushtob(t_stack *stack_a, t_stack *stack_b,
+				t_variables *vars);
 void		ft_sortalgo(t_stack *stack_a, t_stack *stack_b);
-int			ft_getpos_rev(t_list *stac, int num);
-int			ft_searchstack(t_list *stack, int num);
+int			ft_getchunk(t_list *sorted,
+				t_stack *stack, int (*func)(t_list *, int), t_variables *vars);
+
 #endif	/*Push Swap Header*/

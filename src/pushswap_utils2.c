@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:32:01 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/15 13:10:14 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/19 20:26:48 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,27 @@ int	ft_getnext(t_list *lst, int direction)
 
 	if (ft_isempty(lst) || ft_isempty(lst->next))
 		return (0);
-	top = ft_copylist(lst);
+	top = lst;
 	if (direction == FORWARD)
 		return ((int)top->next->content);
 	else if (direction == BACKWARD)
 	{
-		ft_reverse_stack(&top);
-		return ((int)top->next->content);
+		while (top->next->next != NULL)
+			top = top->next;
+		return ((int)top->content);
 	}
 	return (0);
+}
+
+//ANCHOR - GET BOTTOM
+t_list	*ft_getbottom(t_list *stac)
+{
+	t_list	*bottom;
+
+	if (ft_isempty(stac))
+		return (NULL);
+	bottom = ft_copylist(stac);
+	ft_reverse_stack(&bottom);
+	return (bottom);
 }
 //!SECTION

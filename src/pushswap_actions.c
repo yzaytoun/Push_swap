@@ -6,33 +6,13 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:39:26 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/15 15:58:39 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/20 19:44:23 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
 //SECTION ACTIONS
-//FIXME - To be deleted
-void	ft_printstack(t_stack *stack)
-{
-	t_list	*top;
-
-	if (ft_isempty(stack->stack))
-		ft_printf("Empty Stack\n");
-	top = stack->stack;
-	while (top != NULL)
-	{
-		ft_printf(" %d\n", (int)top->content);
-		top = top->next;
-	}
-	ft_printf(" ---\n");
-	if (stack->index == 1)
-		ft_printf("stack_a\n\n");
-	else
-		ft_printf("stack_b\n\n");
-}
-
 //ANCHOR - Swap first two
 int	ft_swap_first_two(t_stack **top)
 {

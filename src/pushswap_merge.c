@@ -6,13 +6,28 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:22:16 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/04 18:42:54 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:19:37 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pushswap.h"
 
 //SECTION MERGE
+//ANCHOR - Get Next Element
+void	ft_getnext_element(t_stack *stack_a, t_stack *stack_b,
+	t_variables *vars)
+{
+	while (vars->top_a != vars->curr)
+	{
+		if (vars->currpos > vars->currrevpos)
+			ft_printer(ft_swap_reverse_rotate(&stack_a));
+		else
+			ft_printer(ft_swap_rotate(&stack_a));
+		ft_checkpoint(stack_a, stack_b, vars);
+	}
+	ft_checkpoint(stack_a, stack_b, vars);
+}
+
 //ANCHOR Split stack
 static void	ft_splitstack(t_list *stack, t_list **front, t_list **back)
 {
