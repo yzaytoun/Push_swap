@@ -104,7 +104,7 @@ clean:
 	@echo "Cleaning Object files"
 	@$(RM) $(PUSH_OBJ) $(PUSH_OBJB) $(OBJDIR)
 	@echo "Cleaning push_swap and push_swap.a"
-	@echo "$(DONE)\n*****************DONE Cleaning**********************\n\n"
+	@echo "$(BLUE)\n*****************DONE Cleaning**********************\n\n"
 
 re: fclean all bonus
 

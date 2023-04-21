@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:26:48 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/20 20:24:27 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:58:52 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	ft_pushtob(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 	while (ft_issorted(stack_a->stack, ASC) != TRUE)
 	{
 		ft_checkpos(stack_a, stack_b, vars);
+		ft_checkpoint(stack_a, stack_b, vars);
 		ft_sortloop(stack_a, stack_b, vars);
+		ft_checkpoint(stack_a, stack_b, vars);
 	}
 }
 
@@ -50,9 +52,9 @@ int	ft_getchunk(t_list *sorted, t_stack *stack,
 
 	count = 0;
 	if (vars->full_size <= 100)
-		limit = 3;
+		limit = 5;
 	if (vars->full_size > 100)
-		limit = 12;
+		limit = 13;
 	if (ft_searchstack(stack->stack, (int)sorted->content) == TRUE)
 		min_pos = func(stack->stack, (int)sorted->content);
 	while (count < limit && sorted != NULL)
@@ -77,7 +79,7 @@ static void	ft_shuffle(t_stack *stack_a, t_stack *stack_b,
 	func[0] = &ft_getpos;
 	func[1] = &ft_getpos_rev;
 	ft_checkpoint(stack_a, stack_b, vars);
-	while (vars->size_a > 12)
+	while (vars->size_a > 15)
 	{
 		sorted = ft_copylist(stack_a->stack);
 		ft_mergesort(&sorted);
@@ -90,9 +92,9 @@ static void	ft_shuffle(t_stack *stack_a, t_stack *stack_b,
 		ft_checkpoint(stack_a, stack_b, vars);
 		ft_getnext_element(stack_a, stack_b, vars);
 		ft_checkpos(stack_a, stack_b, vars);
-		ft_checkpoint(stack_a, stack_b, vars);
 		ft_printer(ft_swap_push(stack_b, stack_a));
 		ft_checkpoint(stack_a, stack_b, vars);
+		ft_checkpos(stack_a, stack_b, vars);
 		ft_deletestack(&sorted);
 	}
 	ft_finalstep(stack_a, stack_b, vars);

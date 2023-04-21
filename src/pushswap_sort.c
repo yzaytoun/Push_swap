@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:10:50 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/20 20:05:29 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:53:48 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_finalstep(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 	while (ft_issorted(stack_a->stack, ASC) != TRUE)
 	{
 		ft_checkpos(stack_a, stack_b, vars);
-		ft_checkpoint(stack_a, stack_b, vars);
 		ft_sortloop(stack_a, stack_b, vars);
+		ft_checkpoint(stack_a, stack_b, vars);
 	}
 	while (ft_isempty(stack_b->stack) != TRUE)
 		ft_pushtob(stack_a, stack_b, vars);
