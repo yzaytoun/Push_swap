@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:14:03 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/20 20:24:37 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:28:55 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_stack
 
 typedef struct s_variables
 {
+	int			count;
 	int			max_a;
 	int			max_b;
 	int			min_a;

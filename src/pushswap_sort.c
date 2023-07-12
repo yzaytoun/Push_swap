@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 10:10:50 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/21 16:53:48 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:59:18 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	ft_sortloop(t_stack *stack_1, t_stack *stack_2, t_variables *vars)
 		return ;
 	else if (vars->size_a > 3 && vars->algo == FALSE)
 		ft_printer(ft_swap_push(stack_2, stack_1));
+	ft_checkpoint(stack_1, stack_2, vars);
+	ft_checkpos(stack_1, stack_2, vars);
 }
 
 //ANCHOR - Set variables
@@ -87,27 +89,24 @@ void	ft_checkpoint(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 void	ft_sortstack(t_stack *stack_a, t_stack *stack_b)
 {
 	t_variables	*vars;
-	int			i;
 
-	i = 0;
 	if (ft_isempty(stack_a->stack))
 		return ;
 	vars = ft_calloc(1, sizeof(t_variables));
 	if (!vars)
 		return ;
 	vars->full_size = ft_lstsize(stack_a->stack);
-	if (vars->full_size == 1)
-		return ;
-	if (ft_issorted(stack_a->stack, ASC) != TRUE
-		|| ft_isempty(stack_b->stack) != TRUE)
+	vars->count = 0;
+	if (vars->full_size > 1 && (ft_issorted(stack_a->stack, ASC) != TRUE
+			|| ft_isempty(stack_b->stack) != TRUE))
 	{
-		while (i < 4)
+		while (vars->count < 3)
 		{
 			while (ft_issorted(stack_a->stack, ASC) != TRUE)
 				ft_sortloop(stack_a, stack_b, vars);
 			while (ft_isempty(stack_b->stack) != TRUE)
 				ft_printer(ft_swap_push(stack_a, stack_b));
-			++i;
+			vars->count++;
 		}
 	}
 	free(vars);

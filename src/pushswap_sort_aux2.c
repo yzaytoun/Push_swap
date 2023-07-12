@@ -6,7 +6,7 @@
 /*   By: yzaytoun <yzaytoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:27:55 by yzaytoun          #+#    #+#             */
-/*   Updated: 2023/04/15 16:00:59 by yzaytoun         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:51:42 by yzaytoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ft_checkmin(t_stack *stack_a, t_stack *stack_b, t_variables *vars)
 		if (ft_issorted(stack_a->stack, ASC) != TRUE)
 			ft_printer(ft_swap_push(stack_b, stack_a));
 	}
-	else if (vars->min_a == vars->revnext_a && vars->size_a > 3)
+	else if (vars->min_a == vars->revnext_a && vars->size_a > 5)
 	{
 		ft_printer(ft_swap_reverse_rotate(&stack_a));
 		ft_printer(ft_swap_reverse_rotate(&stack_a));

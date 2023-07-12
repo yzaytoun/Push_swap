@@ -75,7 +75,7 @@ $(NAME): $(LIBFT) $(PRINTF) $(PUSH_OBJ)
 	@echo "$(GREEN)Done!!"
 	@$(CC) $(NAME) $(LIBFT) $(PRINTF) main.c -o push_swap
 	@chmod +x push_swap
-	@echo "$(YELLOW)************Push Swap is ready****************\n"
+	@echo "$(BLUE)************Push Swap is ready****************\n"
 
 $(PRINTF) $(LIBFT) &:
 	@echo "$(YELLOW)Making Libft"
@@ -91,7 +91,7 @@ $(PUSHBONUS): $(LIBFT) $(PRINTF) $(PUSH_OBJ) $(PUSH_OBJB)
 	@$(AR) $(ARFLAGS) $@ $(PUSH_OBJ) $(PUSH_OBJB)
 	@$(CC) $(PUSHBONUS) $(LIBFT) $(PRINTF) main_bonus.c -o checker
 	@chmod +x checker
-	@echo "$(GREEN)\n************Checker DONE****************\n"
+	@echo "$(PURPLE)\n************Checker DONE****************\n"
 
 
 fclean: clean
